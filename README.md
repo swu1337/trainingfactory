@@ -16,6 +16,13 @@ Clone the project
 
 - Open your command line and execute the following:
 
-```git clone https://github.com/swu1337/trainingfactory.git```
+``git clone https://github.com/swu1337/trainingfactory.git``
 
+# Import database
 
+- Open your browser go to your [localhost](http://localhost/phpmyadmin/) and login
+- Go to import and select in your project directory the sql file. ``C:\xampp\htdocs or C:\wamp64\www \trainingfactory\database\trainingfactory.sql``
+- Scroll down and click on GO
+
+# Development Environment
+The hostlink should be http://localhost/trainingfactory
