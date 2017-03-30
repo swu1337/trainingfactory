@@ -1,11 +1,10 @@
 <?php
 
 const BASE_NAMESPACE = '\\framework\\';
-const DATA_SOURCE_NAME =  'mysql:dbname=telefoonlijst;host=127.0.0.1;charset=utf8';
+const DATA_SOURCE_NAME =  'mysql:dbname=trainingfactory;host=127.0.0.1;charset=utf8';
 const DB_USERNAME = 'root';
 const DB_PASSWORD = '';
 const DEFAULT_ROLE = 'bezoeker';
-const IMAGE_DEFAULT = "default.jpg";
 
 const REQUEST_SUCCESS = 1;
 const REQUEST_FAILURE_DATA_INVALID = 2;
