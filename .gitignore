@@ -444,4 +444,10 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+
 # End of https://www.gitignore.io/api/windows,netbeans,intellij,phpstorm,jetbrains,visualstudio
