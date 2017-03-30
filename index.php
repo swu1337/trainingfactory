@@ -1,8 +1,8 @@
 <?php
-/* de default autoloader spl__autoload wordt nu niet geladen. deze geeft een LogicException
- * dat is uiterst hinderlijk als je verwacht dat de methode class_exsists true of false returnt
- * dat doet deze methode dan dus niet; er ontstaat een logicexception
- */
+/** de default autoloader spl__autoload wordt nu niet geladen. deze geeft een LogicException
+* dat is uiterst hinderlijk als je verwacht dat de methode class_exsists true of false returnt
+* dat doet deze methode dan dus niet; er ontstaat een logicexception
+*/
 include "framework/config.php";
 
 function __autoload($className) {
