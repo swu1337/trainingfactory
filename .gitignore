@@ -97,7 +97,7 @@ fabric.properties
 # Sonarlint plugin
 
 ### NetBeans ###
-nbproject/
+nbproject/private/
 build/
 nbbuild/
 dist/
