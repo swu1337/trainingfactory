@@ -21,8 +21,11 @@ Clone the project
 # Import database
 
 - Open your browser go to your [localhost](http://localhost/phpmyadmin/) and login
-- Go to import and select in your project directory the sql file. ``C:\xampp\htdocs or C:\wamp64\www \trainingfactory\database\trainingfactory.sql``
+- Go to 'Import' and select in your project directory the sql file
+``C:\xampp\htdocs or C:\wamp64\www\trainingfactory\database\trainingfactory.sql``
 - Scroll down and click on GO
 
+Database should be imported now
+
 # Development Environment
-The hostlink should be http://localhost/trainingfactory
+The webapplication should be runnning on http://localhost/trainingfactory
