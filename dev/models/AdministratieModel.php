@@ -1,7 +1,9 @@
 <?php
-namespace framework\models;
+namespace dev\models;
 
-class InstructeurModel extends AbstractModel
+use framework\models\AbstractModel;
+
+class AdministratieModel extends AbstractModel
 {
     public function __construct($control, $action) {
         parent::__construct($control, $action);

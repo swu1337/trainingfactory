@@ -1,7 +1,9 @@
 <?php
-namespace framework\controllers;
+namespace dev\controllers;
 
-class InstructeurController extends AbstractController
+use framework\controllers\AbstractController;
+
+class AdministratieController extends AbstractController
 {
     public function __construct($control, $action, $message = NULL) {
         parent::__construct($control, $action, $message);
