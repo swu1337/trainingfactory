@@ -5,8 +5,8 @@ Schoolproject K2
 
 Requirements: 
 - [WAMP](http://www.wampserver.com/en/) or [XAMP](https://www.apachefriends.org/index.html)
+- [GIT](https://git-scm.com/)
 - Any IDE (Prefer Netbeans or JetBrains Products)
-
 Clone the project
 
 - Navigate to your wamp or xampp folder
@@ -14,7 +14,7 @@ Clone the project
 ``C:\wamp64\www``
 ``C:\xampp\htdocs\``
 
-- Open your command line and execute the following:
+- Open your command line and execute the following for cloning from the repository:
 
 ``git clone https://github.com/swu1337/trainingfactory.git``
 
