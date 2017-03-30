@@ -29,3 +29,16 @@ Database should be imported now
 
 # Development Environment
 The webapplication should be runnning on http://localhost/trainingfactory
+
+# CSS Structure
+We are using bootstrap, try to use bootstrap properties before making new class.
+
+Follow [Bootsrap Documentation](http://getbootstrap.com/css/)
+
+For every new partial make a new css file and remember to include it in the style.css
+``@import url(src)``
+
+# Javascript
+Use module pattern
+
+
