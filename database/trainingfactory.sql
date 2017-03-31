@@ -1,40 +1,14 @@
--- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Gegenereerd op: 31 mrt 2017 om 10:02
--- Serverversie: 5.7.14
--- PHP-versie: 5.6.25
+-- Creating Database
+--
 
+CREATE DATABASE IF NOT EXISTS `trainingfactory`
+    DEFAULT CHARACTER SET utf8
+    DEFAULT COLLATE utf8_general_ci;
+SET default_storage_engine=InnoDB;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `training_factory`
---
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `lessons`
---
-
-CREATE TABLE `lessons` (
-  `id` int(11) NOT NULL,
-  `time` time NOT NULL,
-  `date` date NOT NULL,
-  `location` varchar(50) NOT NULL,
-  `max_persons` int(11) NOT NULL,
-  `instructeur_id` int(11) NOT NULL,
-  `training_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+USE `trainingfactory`;
 
 -- --------------------------------------------------------
 
@@ -43,22 +17,57 @@ CREATE TABLE `lessons` (
 --
 
 CREATE TABLE `persons` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `loginname` varchar(20) NOT NULL,
   `password` varchar(65) NOT NULL DEFAULT 'qwerty',
   `firstname` varchar(25) NOT NULL,
-  `preprovision` varchar(10) NOT NULL,
+  `preprovision` varchar(10) DEFAULT NULL,
   `lastname` varchar(35) NOT NULL,
   `dateofbirth` date NOT NULL,
   `gender` enum('male','female','other') NOT NULL,
   `email_address` varchar(100) NOT NULL,
-  `hiring_date` date NOT NULL,
-  `salary` decimal(7,0) NOT NULL,
-  `street` varchar(50) NOT NULL,
-  `postal_code` varchar(10) NOT NULL,
-  `place` varchar(35) NOT NULL,
-  `role` enum('instructeur','lid') NOT NULL DEFAULT 'lid'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `hiring_date` date,
+  `salary` decimal(7,2),
+  `street` varchar(50),
+  `postal_code` varchar(10),
+  `place` varchar(35) NULL,
+  `role` enum('instructeur','lid') NOT NULL DEFAULT 'lid',
+  CONSTRAINT `persons_id_pk` PRIMARY KEY (`id`),
+  CONSTRAINT `persons_loginname_uk` UNIQUE(`loginname`),
+  CONSTRAINT `persons_email_address_uk` UNIQUE(`loginname`)
+) ENGINE=InnoDB;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `trainings`
+--
+
+CREATE TABLE `trainings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) NOT NULL,
+  `duration` time NOT NULL,
+  `extra_costs` float DEFAULT NULL,
+  CONSTRAINT `trainings_id_pk` PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `lessons`
+--
+
+CREATE TABLE `lessons` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `time` time NOT NULL,
+  `date` date NOT NULL,
+  `location` varchar(50) NOT NULL,
+  `max_persons` int(11) NOT NULL,
+  `instructor_id` int(11) NOT NULL,
+  `training_id` int(11) NOT NULL,
+  CONSTRAINT `lessons_id_pk` PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
 
 -- --------------------------------------------------------
 
@@ -69,63 +78,21 @@ CREATE TABLE `persons` (
 CREATE TABLE `registrations` (
   `lesson_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
-  `payment` varchar(30) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `payment` varchar(30) DEFAULT NULL,
+  CONSTRAINT `registrations_lesson_id_member_id_pk` PRIMARY KEY (`lesson_id`, `member_id`)
+) ENGINE=InnoDB;
 
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `trainings`
---
-
-CREATE TABLE `trainings` (
-  `id` int(11) NOT NULL,
-  `discription` varchar(255) NOT NULL,
-  `duration` time NOT NULL,
-  `extra_costs` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexen voor geëxporteerde tabellen
---
-
---
--- Indexen voor tabel `lessons`
---
 ALTER TABLE `lessons`
-  ADD PRIMARY KEY (`id`);
+    ADD CONSTRAINT `lessons_instructor_id_fk`
+        FOREIGN KEY (`instructor_id`)
+        REFERENCES `persons` (`id`) ON DELETE CASCADE;
+    ADD CONSTRAINT `lessons_training_fk`
+        FOREIGN KEY (`training_id`)
+        REFERENCES `training` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+-- ALTER TABLE `registrations`
+-- ADD CONSTRAINT `registrations_lesson_id_fk` FOREIGN KEY (`lesson_id`)
+--       REFERENCES `lessons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+-- ADD CONSTRAINT `registrations_member_id_fk` FOREIGN KEY (`member_id`) REFERENCES `persons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 --
--- Indexen voor tabel `persons`
---
-ALTER TABLE `persons`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `trainings`
---
-ALTER TABLE `trainings`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT voor geëxporteerde tabellen
---
-
---
--- AUTO_INCREMENT voor een tabel `lessons`
---
-ALTER TABLE `lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT voor een tabel `persons`
---
-ALTER TABLE `persons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT voor een tabel `trainings`
---
-ALTER TABLE `trainings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ADD CONSTRAINT `deelnames_ibfk_1` FOREIGN KEY (`activiteit_id`) REFERENCES `activiteiten` (`id`) ON DELETE CASCADE,
