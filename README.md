@@ -30,15 +30,23 @@ Database should be imported now
 # Development Environment
 The webapplication should be runnning on http://localhost/trainingfactory
 
+Don't change the framework files unless you know what you're doing.
+
+Developers should be working and only be working in the dev files for php.
+
+
 # CSS Structure
 We are using bootstrap, try to use bootstrap properties before making new class.
 
 Follow [Bootsrap Documentation](http://getbootstrap.com/css/)
 
 For every new partial make a new css file and remember to include it in the style.css
+
 ``@import url(src)``
 
 # Javascript
 Use module pattern
+
+Here is an in depth Javascript Module Pattern Example [Click me](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html) 
 
 
