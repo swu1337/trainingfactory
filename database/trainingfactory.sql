@@ -82,17 +82,30 @@ CREATE TABLE `registrations` (
   CONSTRAINT `registrations_lesson_id_member_id_pk` PRIMARY KEY (`lesson_id`, `member_id`)
 ) ENGINE=InnoDB;
 
-ALTER TABLE `lessons`
-    ADD CONSTRAINT `lessons_instructor_id_fk`
-        FOREIGN KEY (`instructor_id`)
-        REFERENCES `persons` (`id`) ON DELETE CASCADE;
-    ADD CONSTRAINT `lessons_training_fk`
-        FOREIGN KEY (`training_id`)
-        REFERENCES `training` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+-- --------------------------------------------------------
 
--- ALTER TABLE `registrations`
--- ADD CONSTRAINT `registrations_lesson_id_fk` FOREIGN KEY (`lesson_id`)
---       REFERENCES `lessons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
--- ADD CONSTRAINT `registrations_member_id_fk` FOREIGN KEY (`member_id`) REFERENCES `persons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 --
--- ADD CONSTRAINT `deelnames_ibfk_1` FOREIGN KEY (`activiteit_id`) REFERENCES `activiteiten` (`id`) ON DELETE CASCADE,
+-- Tabelrelatie voor tabel `lessons`
+--
+
+ALTER TABLE `lessons`
+	ADD CONSTRAINT `lessons_instructor_id_fk`
+		FOREIGN KEY (`instructor_id`)
+		REFERENCES `persons`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	ADD CONSTRAINT `lessons_training_fk`
+        FOREIGN KEY (`training_id`)
+        REFERENCES `trainings`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+		
+-- --------------------------------------------------------
+
+--
+-- Tabelrelatie voor tabel `registrations`
+--
+		
+ALTER TABLE `registrations`
+	ADD CONSTRAINT `registrations_lesson_id_fk` 
+		FOREIGN KEY (`lesson_id`)
+		REFERENCES `lessons`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	ADD CONSTRAINT `registrations_member_id_fk` 
+		FOREIGN KEY (`member_id`)
+		REFERENCES `persons`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
