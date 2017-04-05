@@ -2,4 +2,7 @@
 @import url("vendors/normalize.css");
 @import url("partials/header.css");
 @import url("partials/footer.css");
+@import url("partials/navbar.css");
+@import url("helper/helper.css");
+
 
