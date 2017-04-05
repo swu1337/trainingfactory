@@ -1,5 +1,4 @@
 <?php
-
 const BASE_NAMESPACE = '\\dev\\';
 const DATA_SOURCE_NAME = 'mysql:dbname=trainingfactory;host=127.0.0.1;charset=utf8';
 const DB_USERNAME = 'root';
@@ -15,8 +14,8 @@ const IMAGE_NOTHING_UPLOADED = 4;
 const IMAGE_FAILURE_SIZE_EXCEEDED = 5;
 const IMAGE_FAILURE_TYPE = 6;
 const IMAGE_SUCCESS = 7;
-const IMAGE_FAILURE_SAVE_FAILED = 8;
 
+const IMAGE_FAILURE_SAVE_FAILED = 8;
 const DB_NOT_ACCEPTABLE_DATA = 9;
 
 const VIEW_PATH = '/dev/view/templates/';
