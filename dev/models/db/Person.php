@@ -24,4 +24,8 @@ class Person extends Entiteit
     public function __construct() {
         $this->id = filter_var($this->id, FILTER_VALIDATE_INT);
     }
+
+    public function getName() {
+        return "$this->fistname $this->preprovision $this->lastname";
+    }
 }

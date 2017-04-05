@@ -9,38 +9,78 @@
     </head>
     <body>
         <nav class="navbar navbar-default no-border-radius">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header navbar-padding">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-wrapper" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><img alt="Brand" src="https://placeholdit.imgix.net/~text?txtsize=13&txt=75%C3%9775&w=100&h=100"></a>
-            </div>
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header navbar-padding">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-wrapper" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img alt="Brand" src="https://placeholdit.imgix.net/~text?txtsize=13&txt=75%C3%9775&w=100&h=100"></a>
+                </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
-                <h2 class="navbar-text">Training Centrum Den Haag</h2>
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Trainings Aanbod</a></li>
-                    <li><a href="#">Lid worden</a></li>
-                    <li><a href="#">Gedragsregels</a></li>
-                    <li><a href="#">Locatie & Contact</a></li>
-                </ul>
-                <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username">
+                <!-- Navigation for a member -->
+                <?php if(isset($gebruiker) && $gebruiker->getRole() === 'lid'):?>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
+                    <h2 class="navbar-text">Training Centrum Den Haag</h2>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Inschrijven op les</a></li>
+                        <li><a href="#">Overzicht inschrijvingen</a></li>
+                        <li><a href="#">Gegevens lid wijzigen</a></li>
+                    </ul>
+                    <div class="navbar-right">
+                        <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
+                        <p class="nav-text text-right"><?= $gebruiker->getRole(); ?></p>
+                        <a class="btn btn-danger pull-right">Logout</a>
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <?php endif;?>
+
+                <!-- Navigation for a instructor -->
+                <?php if(isset($gebruiker) && $gebruiker->getRole() === 'instructeur'):?>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
+                    <h2 class="navbar-text">Training Centrum Den Haag</h2>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Plannen Lessen</a></li>
+                        <li><a href="#">Lessen Beheer</a></li>
+                    </ul>
+                    <div class="navbar-right">
+                        <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
+                        <p class="nav-text text-right"><?= $gebruiker->getRole(); ?></p>
+                        <a class="btn btn-danger pull-right">Logout</a>
                     </div>
-                    <button type="submit" class="btn btn-default">Login</button>
-                </form>
+                </div>
+                <?php endif;?>
+
+                <!-- Default Navigation -->
+                <?php if(!isset($gebruiker)):?>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
+                    <h2 class="navbar-text">Training Centrum Den Haag</h2>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Trainings Aanbod</a></li>
+                        <li><a href="#">Lid worden</a></li>
+                        <li><a href="#">Gedragsregels</a></li>
+                        <li><a href="#">Locatie & Contact</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-default">Login</button>
+                    </form>
+                </div>
+                <?php endif;?>
             </div>
-        </div>
         </nav>
-    <section>
+        <section>
