@@ -18,3 +18,5 @@ const IMAGE_SUCCESS = 7;
 const IMAGE_FAILURE_SAVE_FAILED = 8;
 
 const DB_NOT_ACCEPTABLE_DATA = 9;
+
+const VIEW_PATH = '/dev/view/templates/';

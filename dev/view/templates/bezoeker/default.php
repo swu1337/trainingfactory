@@ -1,1 +1,1 @@
-<?php
+<?php include VIEW_PATH . 'includes/footer.php';?>
