@@ -1,7 +1,7 @@
 <?php
 
 const BASE_NAMESPACE = '\\dev\\';
-const DATA_SOURCE_NAME =  'mysql:dbname=trainingfactory;host=127.0.0.1;charset=utf8';
+const DATA_SOURCE_NAME = 'mysql:dbname=trainingfactory;host=127.0.0.1;charset=utf8';
 const DB_USERNAME = 'root';
 const DB_PASSWORD = '';
 const DEFAULT_ROLE = 'bezoeker';
