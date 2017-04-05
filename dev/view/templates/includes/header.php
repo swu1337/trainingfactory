@@ -11,18 +11,19 @@
         <nav class="navbar navbar-default no-border-radius">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <div class="navbar-header navbar-padding">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-wrapper" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Training Centrum Den Haag</a>
+                <a class="navbar-brand" href="#"><img alt="Brand" src="https://placeholdit.imgix.net/~text?txtsize=13&txt=75%C3%9775&w=100&h=100"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
+                <h2 class="navbar-text">Training Centrum Den Haag</h2>
                 <ul class="nav navbar-nav">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Trainings Aanbod</a></li>
