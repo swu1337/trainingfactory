@@ -1,13 +1,13 @@
 footer{
-    float:left;
-    width:95%;
-    border-top: 1px solid #5a5d61;   
-    text-align:right;
-    font-size: 0.8em;
-    padding:2.5%;
-    color:#5a5d61;
-    background-color:white;
-}
+     float:left;
+     width:95%;
+     border-top: 1px solid #5a5d61;
+     text-align:right;
+     font-size: 0.8em;
+     padding:2.5%;
+     color:#5a5d61;
+     background-color:white;
+ }
 
 footer>br{
     clear: both;
