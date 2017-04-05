@@ -29,7 +29,7 @@ class View {
     */
 
     private function getTemplate() {
-        return str_replace('\\',DIRECTORY_SEPARATOR, BASE_NAMESPACE . "view\\tpls\\$this->control\\$this->action.php");
+        return str_replace('\\',DIRECTORY_SEPARATOR, BASE_NAMESPACE . "view\\templates\\$this->control\\$this->action.php");
     }
     
     
