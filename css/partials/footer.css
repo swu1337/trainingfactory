@@ -1,6 +1,22 @@
-/*Styles for the footer*/
-/*Use Classes*/
+footer{
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    background-color: red;
+ }
 
-.footer{
+footer>br{
+    clear: both;
+}
 
+.footer-text{
+    margin-top: 30px;
+}
+
+.footer-subText{
+    color: white;
 }
