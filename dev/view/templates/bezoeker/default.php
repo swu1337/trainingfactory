@@ -5,55 +5,8 @@
     <img src="img/boxing.jpg" class="content-img" />
     <img src="img/boxing.jpg" class="content-img" />
     <img src="img/boxing.jpg" class="content-img" />
-    <div class="registration-holder">
-        <h2>Lid Worden</h2>
-        <p>Om gebruik te maken van de lessen moet je bij ons bekend zijn.
-            <br>Vul hieronder alle gegevens in en registreer jezelf.</p>
-        
-        <div class="left-registration-holder">
-            <label>Voornaam *</label><br>
-            <input class="registration-input" name="voornaam"/><br>
-
-            <label>Tussenvoegsel</label><br>
-            <input class="registration-input" name="tussenvoegsel"/><br>
-
-            <label>Achternaam *</label><br>
-            <input class="registration-input" name="achternaam"/><br>
-
-            <label>Geboortedatum *</label><br>
-            <input class="registration-input" name="geboortenaam"/><br>
-
-            <label>Gebruikersnaam *</label><br>
-            <input class="registration-input" name="gebruikersnaam"/><br>
-
-            <label>Wachtwoord *</label><br>
-            <input class="registration-input" name="wachtwoord"/><br>
-
-            <label>Herhaling wachtwoord *</label><br>
-            <input class="registration-input" name="herwachtwoord"/><br>
-
-            <p>Het wachtwoord is nodig om in te loggen, moet minstens 6 tekens bevatten.</p>
-        </div>
-        
-        <div class="right-registration-holder">
-            <label>Man/Vrouw/Anders *</label><br>
-            <input type="radio" name="geslacht" value="man"> Male
-            <input type="radio" name="geslacht" value="vrouw"> Female
-            <input type="radio" name="geslacht" value="anders"> Other<br>
-
-            <label>Straat *</label><br>
-            <input class="registration-input" name="straat"/><br>
-
-            <label>Postcode *</label><br>
-            <input class="registration-input" name="postcode"/><br>
-
-            <label>Stad</label><br>
-            <input class="registration-input" name="stad"/><br>
-
-            <label>Email</label><br>
-            <input class="registration-input" name="email"/><br> 
-        </div>
-        <div class="clearfix"></div>
-    </div>
+    <div class="text-holder">
+        <h2>Welkom bij Training Centrum Den Haag</h2>
+        <p>Den Haag Training Center is een sportschool waar onder profesionele begeleiding in een veilige omgeving verschillende soorten martial arts-, indoor bootcamp, personal- en small group trainingen worden aangeboden. Hier kan je je inschrijven op een les of uitschrijven op een les.</p>
 </div>
 <?php include VIEW_PATH . 'includes/footer.php';?>
