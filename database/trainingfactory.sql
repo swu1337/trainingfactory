@@ -90,11 +90,11 @@ CREATE TABLE `registrations` (
 
 ALTER TABLE `lessons`
 	ADD CONSTRAINT `lessons_instructor_id_fk`
-		FOREIGN KEY (`instructor_id`)
-		REFERENCES `persons`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+      FOREIGN KEY (`instructor_id`)
+		  REFERENCES `persons`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 	ADD CONSTRAINT `lessons_training_fk`
-        FOREIGN KEY (`training_id`)
-        REFERENCES `trainings`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+      FOREIGN KEY (`training_id`)
+      REFERENCES `trainings`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 		
 -- --------------------------------------------------------
 

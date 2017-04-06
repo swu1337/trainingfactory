@@ -26,6 +26,7 @@ INSERT INTO `persons`
  `role`)
 VALUES
 (NULL,'member','qwerty','member','van','trainingfactory','2017-04-04','male','member@member.com',NULL,NULL,'street1','1234AB','The Hague','member'),
+(NULL,'member1','qwerty','member1','van','trainingfactory','2016-03-01','male','member1@member.com',NULL,NULL,'street11','1131AB','The Hague','member'),
 (NULL,'instructor','qwerty','instructor','van','trainingfactory','2017-04-04','male','instructor@instructor.com','2013-04-04','2500.00','street2','2134AB','The Hague','instructor'),
 (NULL,'admin','qwerty','admin','van','trainingfactory','2013-04-04','female','admin@admin.com','2012-04-04','2500.00','street3','2134AC','The Hague','admin');
 
@@ -49,3 +50,33 @@ VALUES
 --
 -- Data for Lesssons
 --
+
+INSERT INTO `lessons`
+(`id`,
+ `time`,
+ `date`,
+ `location`,
+ `max_persons`,
+ `instructor_id`,
+ `training_id`)
+ VALUES
+ (NULL, '11:09:01', '2017-04-19', 'The Hague', 5, 2, 1),
+ (NULL, '12:19:29', '2017-04-19', 'The Hague', 5, 2, 2),
+ (NULL, '13:29:47', '2017-04-19', 'The Hague', 5, 2, 3),
+ (NULL, '14:39:55', '2017-04-20', 'The Hague', 5, 2, 4),
+ (NULL, '15:49:32', '2017-04-20', 'The Hague', 5, 2, 5),
+ (NULL, '16:59:20', '2017-04-20', 'The Hague', 5, 2, 6),
+ (NULL, '17:39:31', '2017-04-21', 'The Hague', 5, 2, 7),
+ (NULL, '18:29:20', '2017-04-21', 'The Hague', 5, 2, 8),
+ (NULL, '19:19:23', '2017-04-21', 'The Hague', 5, 2, 9),
+ (NULL, '20:39:20', '2017-04-22', 'The Hague', 5, 2, 10),
+ (NULL, '21:19:26', '2017-04-22', 'The Hague', 5, 2, 11),
+ (NULL, '22:29:25', '2017-04-22', 'The Hague', 5, 2, 12),
+ (NULL, '23:19:11', '2017-04-23', 'The Hague', 5, 2, 1),
+ (NULL, '23:29:12', '2017-04-23', 'The Hague', 5, 2, 2),
+ (NULL, '23:39:13', '2017-04-23', 'The Hague', 5, 2, 3);
+
+--
+-- Data for Registrations
+--
+
