@@ -27,6 +27,7 @@ try {
 } catch(\PDOException $e) {
     $error = "er is iets misgegaan in met de database. Waarschuw de beheerder";
     // zorg zelf e.v.t. voor een fout pagina
+    echo $e;
     echo $error;
 } catch(\Exception $e) {
     $error = "er is uitzondering opgetreden. Ga je code na";

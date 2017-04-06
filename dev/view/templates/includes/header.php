@@ -22,7 +22,7 @@
                 </div>
 
                 <!-- Navigation for a member -->
-                <?php if(isset($gebruiker) && $gebruiker->getRole() === 'lid'):?>
+                <?php if(isset($gebruiker) && $gebruiker->getRole() === 'member'):?>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
                     <h2 class="navbar-text">Training Centrum Den Haag</h2>
@@ -34,14 +34,14 @@
                     </ul>
                     <div class="navbar-right">
                         <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
-                        <p class="nav-text text-right"><?= $gebruiker->getRole(); ?></p>
-                        <a class="btn btn-danger pull-right">Logout</a>
+                        <p class="nav-text text-right">- <?= $gebruiker->getRole(); ?> -</p>
+                        <a class="btn btn-danger pull-right" href=<?= "?control=" . $gebruiker->getRole() . "&action=uitloggen"?>>Logout</a>
                     </div>
                 </div>
                 <?php endif;?>
 
                 <!-- Navigation for a instructor -->
-                <?php if(isset($gebruiker) && $gebruiker->getRole() === 'instructeur'):?>
+                <?php if(isset($gebruiker) && $gebruiker->getRole() === 'instructor'):?>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
                     <h2 class="navbar-text">Training Centrum Den Haag</h2>
@@ -52,10 +52,29 @@
                     </ul>
                     <div class="navbar-right">
                         <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
-                        <p class="nav-text text-right"><?= $gebruiker->getRole(); ?></p>
-                        <a class="btn btn-danger pull-right">Logout</a>
+                        <p class="nav-text text-right">- <?= $gebruiker->getRole(); ?> -</p>
+                        <a class="btn btn-danger pull-right" href=<?= "?control=" . $gebruiker->getRole() . "&action=uitloggen"?>>Logout</a>
                     </div>
                 </div>
+                <?php endif;?>
+
+                <!-- Navigation for a instructor -->
+                <?php if(isset($gebruiker) && $gebruiker->getRole() === 'admin'):?>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
+                        <h2 class="navbar-text">Training Centrum Den Haag</h2>
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Instructeurs</a></li>
+                            <li><a href="#">Leden</a></li>
+                            <li><a href="#">Trainingen</a></li>
+                        </ul>
+                        <div class="navbar-right">
+                            <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
+                            <p class="nav-text text-right">- <?= $gebruiker->getRole(); ?> -</p>
+                            <a class="btn btn-danger pull-right" href=<?= "?control=" . $gebruiker->getRole() . "&action=uitloggen"?>>Logout</a>
+                        </div>
+                    </div>
                 <?php endif;?>
 
                 <!-- Default Navigation -->
@@ -70,12 +89,12 @@
                         <li><a href="?control=bezoeker&action=gedragsregels">Gedragsregels</a></li>
                         <li><a href="?control=bezoeker&action=contact">Locatie & Contact</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right">
+                    <form class="navbar-form navbar-right" method="post" autocomplete="off">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Username">
+                            <input type="text" name="ln" class="form-control" placeholder="Loginname" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" name="pw" class="form-control" placeholder="Password" required>
                         </div>
                         <button type="submit" class="btn btn-default">Login</button>
                     </form>

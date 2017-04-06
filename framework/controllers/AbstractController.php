@@ -77,8 +77,13 @@ abstract class AbstractController implements IController
     }
 
     protected abstract function defaultAction();
-    
-    
+
+    protected function uitloggenAction() {
+        list($url, $substring) = explode("?", $_SERVER['HTTP_REFERER']);
+        header("Location: $url");
+        $this->model->uitloggen();
+        $this->forward('default', DEFAULT_ROLE);
+    }
 }
 
 

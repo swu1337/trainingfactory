@@ -1,4 +1,5 @@
 <?php include VIEW_PATH . 'includes/header.php';?>
+<?= isset($msg) ? $msg : ''; ?>
 <div class="content-holder">
     <img src="img/boxing.jpg" class="content-img" />
     <img src="img/boxing.jpg" class="content-img" />
