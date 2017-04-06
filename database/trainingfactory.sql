@@ -31,7 +31,7 @@ CREATE TABLE `persons` (
   `street` varchar(50),
   `postal_code` varchar(10),
   `place` varchar(35) NULL,
-  `role` enum('instructeur','lid') NOT NULL DEFAULT 'lid',
+  `role` enum('instructor', 'member', 'admin') NOT NULL DEFAULT 'member',
   CONSTRAINT `persons_id_pk` PRIMARY KEY (`id`),
   CONSTRAINT `persons_loginname_uk` UNIQUE(`loginname`),
   CONSTRAINT `persons_email_address_uk` UNIQUE(`loginname`)
