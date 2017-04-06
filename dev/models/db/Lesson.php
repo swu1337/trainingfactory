@@ -1,4 +1,5 @@
 <?php
+
 namespace dev\models\db;
 
 use framework\models\db\Entiteit;
@@ -6,9 +7,10 @@ use framework\models\db\Entiteit;
 class Lesson extends Entiteit
 {
     protected $id;
-    protected $description;
-    protected $duration;
-    protected $extra_costs;
+    protected $time;
+    protected $date;
+    protected $location;
+    protected $max_persons;
     protected $instructor_id;
     protected $training_id;
 
