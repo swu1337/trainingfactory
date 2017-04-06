@@ -83,11 +83,11 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
                     <h2 class="navbar-text">Training Centrum Den Haag</h2>
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Trainings Aanbod</a></li>
-                        <li><a href="#">Lid worden</a></li>
-                        <li><a href="#">Gedragsregels</a></li>
-                        <li><a href="#">Locatie & Contact</a></li>
+                        <li><a href="?control=bezoeker&action=default">Home</a></li>
+                        <li><a href="?control=bezoeker&action=aanbod">Trainings Aanbod</a></li>
+                        <li><a href="?control=bezoeker&action=registreren">Lid worden</a></li>
+                        <li><a href="?control=bezoeker&action=gedragsregels">Gedragsregels</a></li>
+                        <li><a href="?control=bezoeker&action=contact">Locatie & Contact</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" method="post" autocomplete="off">
                         <div class="form-group">
