@@ -70,3 +70,17 @@ NULL,
 '1111AB',
 'The Hague',
 'admin')
+
+--
+-- Data for Trainings
+--
+
+INSERT INTO `trainings` 
+(`id`, `description`, `duration`, `extra_costs`)
+VALUES
+(NULL, 'Boksen', '01:20:00', NULL),
+(NULL, 'Kickboksen', '02:10:00', 10),
+(NULL, 'MMA', '00:45:00', 49.5),
+(NULL, 'Stootzak trainingen', '01:25:00', NULL),
+(NULL, 'Bootcamps', '03:30:00', 16.5),
+(NULL, 'Fitness-uren', '03:00:00', NULL);
