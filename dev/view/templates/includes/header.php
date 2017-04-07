@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
                     <h2 class="navbar-text">Training Centrum Den Haag</h2>
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="?control=member&action=default">Home</a></li>
                         <li><a href="?control=member&action=inschrijven">Inschrijven op les</a></li>
                         <li><a href="#">Overzicht inschrijvingen</a></li>
                         <li><a href="#">Gegevens lid wijzigen</a></li>
