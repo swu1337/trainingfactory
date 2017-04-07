@@ -30,7 +30,7 @@
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Inschrijven op les</a></li>
                         <li><a href="#">Overzicht inschrijvingen</a></li>
-                        <li><a href="#">Gegevens lid wijzigen</a></li>
+                        <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=gegevenswijzigen&id=" . $gebruiker->getId() ?>>Gegevens Wijzigen</a></li>
                     </ul>
                     <div class="navbar-right">
                         <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
