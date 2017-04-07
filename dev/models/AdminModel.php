@@ -39,6 +39,8 @@ class AdminModel extends AbstractModel
 
     public function getTraining($id) {
         $id = filter_input($id, FILTER_VALIDATE_INT);
+        var_dump($id);
+        die();
 
         if($id === null) {
             return PARAM_URL_INCOMPLETE;
