@@ -47,7 +47,7 @@ CREATE TABLE `trainings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL,
   `duration` time NOT NULL,
-  `extra_costs` float DEFAULT NULL,
+  `extra_costs` decimal(7,2) DEFAULT 0.00,
   CONSTRAINT `trainings_id_pk` PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
@@ -104,8 +104,8 @@ ALTER TABLE `lessons`
 		
 ALTER TABLE `registrations`
     ADD CONSTRAINT `registrations_lesson_id_fk` 
-	FOREIGN KEY (`lesson_id`)
-	REFERENCES `lessons`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        FOREIGN KEY (`lesson_id`)
+        REFERENCES `lessons`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `registrations_member_id_fk` 
-	FOREIGN KEY (`member_id`)
-	REFERENCES `persons`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+	      FOREIGN KEY (`member_id`)
+	      REFERENCES `persons`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

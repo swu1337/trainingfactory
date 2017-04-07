@@ -25,22 +25,17 @@ class AdminController extends AbstractController
 
     protected function trainingsAction() {
         $this->view->set('gebruiker', $this->model->getGebruiker());
-        $this->view->set('trainings', $this->model->getTraining('trainings'));
+        $this->view->set('trainings', $this->model->getTraining());
     }
 
     protected function trainingEditAction() {
         $this->view->set('gebruiker', $this->model->getGebruiker());
-        $request = $this->model->getTraining((int)$_GET['id']);
-        switch ($request) {
-            case PARAM_URL_INVALID:
-                $this->view->set('msg', 'Invalid URL');
-                break;
-            case PARAM_URL_INCOMPLETE:
-                $this->view->set('msg', 'URL missing parameters');
-                break;
-            default: return;
-        }
+        $request = $this->model->getTraining($_GET['id']);
 
-        $this->view->set('training', $this->model->getTraining($_GET['id']));
+        if(request !== PARAM_URL_INVALID) {
+            $this->view->set('training', $request);
+        } else {
+            $this->view->set('msg', 'Invalid URL');
+        }
     }
 }
