@@ -89,7 +89,7 @@
                         <li><a href="?control=bezoeker&action=gedragsregels">Gedragsregels</a></li>
                         <li><a href="?control=bezoeker&action=contact">Locatie & Contact</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right" method="post" autocomplete="off">
+                    <form class="navbar-form navbar-right" method="post" autocomplete="off" action="?control=bezoeker&action=inloggen">
                         <div class="form-group">
                             <input type="text" name="ln" class="form-control" placeholder="Loginname" required>
                         </div>
