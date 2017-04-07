@@ -10,7 +10,10 @@ class BezoekerController extends AbstractController
     }
 
     protected function defaultAction() {
-        /*if(!$this->model->isPostLeeg()) {
+    }
+
+    protected function inloggenAction() {
+        if(!$this->model->isPostLeeg()) {
             switch ($this->model->controleerInloggen()) {
                 case REQUEST_SUCCESS:
                     $this->view->set("msg", "Welkom " . $_SESSION['gebruiker']->getName());
@@ -24,31 +27,26 @@ class BezoekerController extends AbstractController
                     $this->view->set("msg", "Niet alle gegevens ingevuld");
                     break;
             }
-        }*/
+        }
     }
 
-    protected function contactAction(){     
+    protected function contactAction() {
     }
     
-    protected function aanbodAction(){ 
-       $soortTrainingen=$this->model->getSoortTrainingen();
-       $this->view->set("soortTrainingen",$soortTrainingen); 
+    protected function aanbodAction() {
+        $soortTrainingen=$this->model->getSoortTrainingen();
+        $this->view->set("soortTrainingen",$soortTrainingen);
     }
     
-    protected function gedragsregelsAction(){     
+    protected function gedragsregelsAction() {
     }
        
-    protected function registrerenAction()
-    {
-        if($this->model->isPostLeeg())
-        {
-           $this->view->set("msg", "Vul uw gegevens in");
-        }
-        else
-        {   
-            $result=$this->model->registreren();
-            switch($result)
-            {
+    protected function registrerenAction() {
+        if($this->model->isPostLeeg()) {
+            $this->view->set("msg", "Vul uw gegevens in");
+        } else {
+            $result = $this->model->registreren();
+            switch($result) {
                 case REQUEST_SUCCESS:
                      $this->view->set("msg", "U bent successvol geregistreerd!");                     
                      $this->forward("default");
