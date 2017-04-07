@@ -1,4 +1,5 @@
 <?php include VIEW_PATH . 'includes/header.php';?>
+<?= $msg ;?>
 <div class="content-holder">
     <img src="img/boxing.jpg" class="content-img" />
     <img src="img/boxing.jpg" class="content-img" />
@@ -20,26 +21,23 @@
             <label>Achternaam *</label><br>
             <input class="registration-input" name="achternaam"/><br>
 
-            <label>Geboortedatum *</label><br>
-            <input class="registration-input" name="geboortenaam"/><br>
+            <label>Geboortedatum * YYYY/MM/DD</label><br>
+            <input class="registration-input" name="geboortedatum"/><br>
 
             <label>Gebruikersnaam *</label><br>
             <input class="registration-input" name="gebruikersnaam"/><br>
 
-            <label>Wachtwoord *</label><br>
-            <input class="registration-input" name="wachtwoord"/><br>
-
-            <label>Herhaling wachtwoord *</label><br>
-            <input class="registration-input" name="herwachtwoord"/><br>
+            <label>Wachtwoord</label><br>
+            <input class="registration-input" name="wachtwoord" type="password"/><br>
 
             <p>Het wachtwoord is nodig om in te loggen, moet minstens 6 tekens bevatten.</p>
         </div>
         
         <div class="right-registration-holder">
             <label>Man/Vrouw/Anders *</label><br>
-            <input type="radio" name="geslacht" value="man"> Male
-            <input type="radio" name="geslacht" value="vrouw"> Female
-            <input type="radio" name="geslacht" value="anders"> Other<br>
+            <input type="radio" name="geslacht" value="male"> Man
+            <input type="radio" name="geslacht" value="female"> Vrouw
+            <input type="radio" name="geslacht" value="other"> Anders<br>
 
             <label>Straat *</label><br>
             <input class="registration-input" name="straat"/><br>
