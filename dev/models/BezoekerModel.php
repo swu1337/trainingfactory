@@ -83,7 +83,6 @@ class BezoekerModel extends AbstractModel
         $stmnt->bindParam(':straat', $st);
         $stmnt->bindParam(':postcode', $pc);
         $stmnt->bindParam(':stad', $sd);
-        var_dump($_POST);
         try
         {
             $stmnt->execute();

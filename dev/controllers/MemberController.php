@@ -12,4 +12,9 @@ class MemberController extends AbstractController
     protected function defaultAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
     }
+    
+    protected function inschrijvenAction() {
+        $this->view->set("gebruiker", $this->model->getGebruiker());
+    }
+    
 }
