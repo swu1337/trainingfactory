@@ -12,4 +12,18 @@ class AdminController extends AbstractController
     protected function defaultAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
     }
+
+    protected function instructors() {
+
+    }
+
+    protected function members() {
+
+    }
+
+    protected function trainings() {
+
+    }
+
+
 }
