@@ -64,10 +64,10 @@
                     <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
                         <h2 class="navbar-text">Training Centrum Den Haag</h2>
                         <ul class="nav navbar-nav">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Instructeurs</a></li>
-                            <li><a href="#">Leden</a></li>
-                            <li><a href="#">Trainingen</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=instructors"?>>Instructeurs</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=members"?>>Leden</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=trainings"?>>Trainingen</a></li>
                         </ul>
                         <div class="navbar-right">
                             <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
