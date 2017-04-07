@@ -27,8 +27,8 @@
             <label>Gebruikersnaam *</label><br>
             <input class="registration-input" name="gebruikersnaam"/><br>
 
-            <label>Wachtwoord *</label><br>
-            <input class="registration-input" name="wachtwoord"/><br>
+            <label>Wachtwoord</label><br>
+            <input class="registration-input" name="wachtwoord" type="password"/><br>
 
             <p>Het wachtwoord is nodig om in te loggen, moet minstens 6 tekens bevatten.</p>
         </div>
