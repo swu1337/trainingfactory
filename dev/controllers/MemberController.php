@@ -13,22 +13,20 @@ class MemberController extends AbstractController
         $this->view->set("gebruiker", $this->model->getGebruiker());
     }
     
-    protected function gegevensWijzigenAction()
-    {
+    protected function gegevensWijzigenAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
 
         if($this->model->isPostLeeg()) {
             $this->view->set("msg", "Vul uw gegevens in");
         } else {
-            $result = $this->model->wijziggegevens();
-            switch($result) {
+            switch($this->model->wijziggegevens()) {
                 case REQUEST_SUCCESS:
-                     $this->view->set("msg", "U heeft successvol u gegevens gewijzigd!");
+                     $this->view->set("msg", "U heeft successvol uw gegevens gewijzigd!");
                      $this->forward("default");
                      break;
                 case REQUEST_FAILURE_DATA_INVALID:
                      $this->view->set('form_data',$_POST);
-                     $this->view->set("msg", "emailadres niet correct of gebruikersnaam bestaat al"); 
+                     $this->view->set("msg", "Emailadres niet correct of gebruikersnaam bestaat al");
                      break;
                 case REQUEST_FAILURE_DATA_INCOMPLETE:
                      $this->view->set('form_data',$_POST);
