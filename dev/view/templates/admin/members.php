@@ -24,8 +24,8 @@
                     <td><?= $m->getStreet(); ?></td>
                     <td><?= $m->getPlace(); ?></td>
                     <td><?= $m->getLoginname(); ?></td>
-                    <td><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>
-                    <td><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=edit&id=" . $m->getId() . "&prop=member"; ?>><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=delete&id=" . $m->getId() . "&prop=member"; ?>><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php $z++; endforeach; ?>
             </tbody>

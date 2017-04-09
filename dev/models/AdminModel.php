@@ -9,53 +9,62 @@ class AdminModel extends AbstractModel
         parent::__construct($control, $action);
     }
 
-    public function getPerson($id) {
-        if(is_int($id)) {
-            $sql = "SELECT * FROM `persons` WHERE id = :id LIMIT 1";
-            $stmnt = $this->db->prepare($sql);
-            $stmnt->bindParam(':id', $id);
-            $stmnt->execute();
-            return $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__ . '\db\Person')[0];
-        }
+    public function getObject($prop, $id = null) {
+        if(!isset($id)) {
+            switch ($prop) {
+                case 'training':
+                    $sql = "SELECT * FROM `trainings`";
+                    break;
+                case 'lesson':
+                    $sql = "SELECT * FROM `lessons`";
+                    break;
+                case 'person':
+                    switch ($_GET['type']) {
+                        case 'member':
+                            $sql = "SELECT * FROM `persons` WHERE role = 'member'";
+                            break;
+                        case 'instructor':
+                            $sql = "SELECT * FROM `persons` WHERE role = 'instructor'";
+                            break;
+                        default:
+                            return PARAM_URL_INCOMPLETE;
+                    }
+                    break;
+                default:
+                    return PARAM_URL_INVALID;
+            }
 
-        switch ($id) {
-            case 'members':
-                $sql = "SELECT * FROM `persons` WHERE role = 'member'";
-                break;
-            case 'instructors':
-                $sql = "SELECT * FROM `persons` WHERE role = 'instructor'";
-                break;
-            case 'admins':
-                $sql = "SELECT * FROM `persons` WHERE role = 'admin'";
-                break;
-            default:
-                return REQUEST_FAILURE_DATA_INVALID;
-        }
-
-        $stmnt = $this->db->prepare($sql);
-        $stmnt->execute();
-        return $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__ . '\db\Person');
-    }
-
-    public function getTraining($prop = 'trainings') {
-        if($prop === 'trainings') {
-            $sql = "SELECT * FROM `trainings`";
             $stmnt = $this->db->prepare($sql);
             $stmnt->execute();
-            return $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__ . '\db\Training');
-        }
-
-        $id = filter_var($prop,FILTER_VALIDATE_INT);
-
-        if($id) {
-            $sql = "SELECT * FROM `trainings` WHERE id = :id LIMIT 1";
-            $stmnt = $this->db->prepare($sql);
-            $stmnt->bindParam(':id', $id);
-            $stmnt->execute();
-            //TODO: Return Something Back When Id is not found;
-            return $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__ . '\db\Training')[0];
+            return $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\\' . ucfirst($prop));
         } else {
-            return PARAM_URL_INVALID;
+            if(filter_var($id, FILTER_VALIDATE_INT)) {
+                switch ($prop) {
+                    case 'training':
+                        $sql = "SELECT * FROM `trainings` WHERE id = :id LIMIT 1";
+                        break;
+                    case 'lesson':
+                        $sql = "SELECT * FROM `lessons` WHERE id = :id LIMIT 1";
+                        break;
+                    case 'person':
+                        $sql = "SELECT * FROM `persons` WHERE id = :id LIMIT 1";
+                        break;
+                    default:
+                        return PARAM_URL_INVALID;
+                }
+
+                $stmnt = $this->db->prepare($sql);
+                $stmnt->bindParam(':id', $id);
+                $stmnt->execute();
+
+                if ($stmnt->rowCount() !== 1) {
+                    return PARAM_URL_INVALID;
+                }
+
+                return $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\\' . ucfirst($prop))[0];
+            } else {
+                return PARAM_URL_INCOMPLETE;
+            }
         }
     }
 }

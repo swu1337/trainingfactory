@@ -20,8 +20,8 @@
                     <td><?= $t->getDescription(); ?></td>
                     <td><?= $t->getDuration(); ?></td>
                     <td><?= !empty($t->getExtra_costs())? '&euro; ' . $t->getExtra_costs() : '-'; ?></td>
-                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=trainingedit&id=" . $t->getId(); ?>><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a></span></td>
-                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=trainingdelete&id=" . $t->getId(); ?>><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=edit&id=" . $t->getId() . "&prop=training"; ?>><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a></span></td>
+                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=delete&id=" . $t->getId() ."&prop=training"; ?>><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php $z++; endforeach; ?>
             </tbody>
