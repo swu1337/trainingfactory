@@ -34,14 +34,13 @@ class AdminController extends AbstractController
     protected function membersAction() {
         $this->view->set('gebruiker', $this->model->getGebruiker());
         $request = $this->model->getObject('person');
-
         if(is_int($request)) {
             switch($request) {
                 case PARAM_URL_INCOMPLETE:
-                    $this->view->set('msg', 'Invalid URL Parameters');
+                    $this->view->set('msg', 'Incomplete URL Parameters');
                     break;
                 case PARAM_URL_INVALID:
-                    $this->view->set('msg', 'Incomplete URL Parameters');
+                    $this->view->set('msg', 'Invalid URL Parameters');
                     break;
             }
         } else {
@@ -67,27 +66,10 @@ class AdminController extends AbstractController
         }
     }
 
-    protected function trainingEditAction() {
-        $this->view->set('gebruiker', $this->model->getGebruiker());
-        $request = $this->model->getObject('training', $_GET['id']);
-
-        if(is_int($request)) {
-            switch($request) {
-                case PARAM_URL_INCOMPLETE:
-                    $this->view->set('msg', 'Invalid URL Parameters');
-                    break;
-                case PARAM_URL_INVALID:
-                    $this->view->set('msg', 'Incomplete URL Parameters');
-                    break;
-            }
-        } else {
-            $this->view->set('training', $request);
-        }
-    }
-
     protected function editAction() {
         $this->view->set('gebruiker', $this->model->getGebruiker());
         $prop = $_GET['prop'];
+
         switch ($prop) {
             case 'instructor':
                 $request = $this->model->getObject('person', $_GET['id']);
@@ -98,19 +80,60 @@ class AdminController extends AbstractController
             case 'training':
                 $request = $this->model->getObject('training', $_GET['id']);
                 break;
+            default :
+                $request = PARAM_URL_INVALIDL;
         }
 
         if(is_int($request)) {
             switch($request) {
                 case PARAM_URL_INCOMPLETE:
-                    $this->view->set('msg', 'Invalid URL Parameters');
+                    $this->view->set('msg', 'Incomplete URL Parameters');
                     break;
                 case PARAM_URL_INVALID:
-                    $this->view->set('msg', 'Incomplete URL Parameters');
+                    $this->view->set('msg', 'Invalid URL Parameters');
                     break;
             }
         } else {
             $this->view->set("$prop", $request);
         }
+    }
+
+    protected function deleteAction() {
+        $prop = $_GET['prop'];
+        switch ($prop) {
+            case 'instructor':
+                $request = $this->model->delete('instructor', $_GET['id']);
+                break;
+            case 'member':
+                $request = $this->model->delete('member', $_GET['id']);
+                break;
+            case 'training':
+                $request = $this->model->delete('training', $_GET['id']);
+                break;
+            default :
+                $request = PARAM_URL_INCOMPLETE;
+        }
+
+        switch ($request) {
+            case REQUEST_SUCCESS:
+                $this->view->set("msg", "De geselecteerde $prop is verwijderd!");
+                break;
+            case REQUEST_FAILURE_DATA_INVALID:
+                $this->view->set("msg", "De request naar de server is niet voldaan");
+                break;
+            case REQUEST_FAILURE_DATA_INCOMPLETE:
+                $this->view->set("msg", "De geselecteerde $prop bestaat niet");
+                break;
+            case PARAM_URL_INVALID:
+                $this->view->set('msg', 'Invalid URL Parameters');
+                break;
+            case PARAM_URL_INCOMPLETE:
+                $this->view->set('msg', 'Incomplete URL Parameters');
+                break;
+        }
+
+        $this->forward($prop . 's');
+
+
     }
 }

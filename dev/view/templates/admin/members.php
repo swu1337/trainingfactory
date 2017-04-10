@@ -1,5 +1,6 @@
 <?php include VIEW_PATH . 'includes/header.php';?>
 <?php include VIEW_PATH . 'includes/intro-image.php';?>
+<?= isset($msg) ? $msg : ''; ?>
     <div class="container-fluid">
         <h2>Overzicht Leden</h2>
         <table class="table table-striped">
@@ -16,6 +17,7 @@
             </tr>
             </thead>
             <tbody>
+            <?php if(isset($members)): ?>
             <?php $z = 1; foreach ($members as $m): ?>
                 <tr>
                     <td><?= $z; ?></td>
@@ -28,6 +30,9 @@
                     <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=delete&id=" . $m->getId() . "&prop=member"; ?>><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php $z++; endforeach; ?>
+            <?php else: ?>
+                <p class="lead text-center">Data No Found</p>
+            <?php endif; ?>
             </tbody>
         </table>
     </div>
