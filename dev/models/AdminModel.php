@@ -121,13 +121,13 @@ class AdminModel extends AbstractModel
                     $extra = NULL;
                 }
 
-                if(!\DateTime::createFromFormat('G:i:s', $duration)) {
+                $duration = strtotime($duration);
+
+                if(in_array(false, [$extra, $duration],true)) {
                     return REQUEST_FAILURE_DATA_INVALID;
                 }
 
-                if($extra === false) {
-                    return REQUEST_FAILURE_DATA_INVALID;
-                }
+                $duration = date('H:i:s', $duration);
 
                 $sql = "UPDATE `trainings` SET `description` = :desc, `duration` = :dur, `extra_costs` = :ec WHERE id = :id";
                 $stmnt = $this->db->prepare($sql);
@@ -154,6 +154,7 @@ class AdminModel extends AbstractModel
         try {
             $stmnt->execute();
         } catch (\PDOException $e) {
+            var_dump($e);
             return REQUEST_FAILURE_DATA_INVALID;
         }
 
