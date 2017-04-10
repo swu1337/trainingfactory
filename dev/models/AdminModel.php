@@ -123,7 +123,7 @@ class AdminModel extends AbstractModel
 
                 $duration = strtotime($duration);
 
-                if(in_array(false, [$extra, $duration],true)) {
+                if(in_array(false, [$extra, $duration], true)) {
                     return REQUEST_FAILURE_DATA_INVALID;
                 }
 
@@ -154,7 +154,6 @@ class AdminModel extends AbstractModel
         try {
             $stmnt->execute();
         } catch (\PDOException $e) {
-            var_dump($e);
             return REQUEST_FAILURE_DATA_INVALID;
         }
 

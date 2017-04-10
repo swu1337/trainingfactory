@@ -17,11 +17,11 @@ final class Foto
             return IMAGE_NOTHING_UPLOADED; 
         }
 
-        if($_FILES['foto']['error']=== \UPLOAD_ERR_FORM_SIZE||$_FILES['foto']['error']===\UPLOAD_ERR_INI_SIZE) {
+        if($_FILES['foto']['error'] === \UPLOAD_ERR_FORM_SIZE || $_FILES['foto']['error'] === \UPLOAD_ERR_INI_SIZE) {
             return IMAGE_FAILURE_SIZE_EXCEEDED;
         }
 
-        if($_FILES['foto']['error']===\UPLOAD_ERR_OK) {
+        if($_FILES['foto']['error'] === \UPLOAD_ERR_OK) {
             $finfo = new \finfo(FILEINFO_MIME_TYPE);
             $ext = $finfo->file($_FILES['foto']['tmp_name']);
             $allowed = array(
@@ -33,7 +33,7 @@ final class Foto
             if(!in_array( $ext, $allowed )) {
                 return IMAGE_FAILURE_TYPE;
             }
-            return IMAGE_SUCCES;
+            return IMAGE_SUCCESS;
         }
         return IMAGE_FAILURE_SAVE_FAILED;  
     }
@@ -63,9 +63,9 @@ final class Foto
         $teller = 0;
         $nieuweFotoNaam = md5($tehashenNaam) . ".$ext";
 
-        while(file_exists(IMAGE_LOCATION.$nieuweFotoNaam)) {
-            $tehashenNaam = $teller.$tehashenNaam;
-            $nieuweFotoNaam = md5($tehashenNaam).".$ext";
+        while(file_exists(IMAGE_LOCATION . $nieuweFotoNaam)) {
+            $tehashenNaam = $teller . $tehashenNaam;
+            $nieuweFotoNaam = md5($tehashenNaam) . ".$ext";
             $teller++;
         }
 
@@ -74,11 +74,11 @@ final class Foto
     
     public static function slaAfbeeldingOp($fotoNaam) {
          $foto_tmp_name = $_FILES['foto']['tmp_name'];
-         $result = \move_uploaded_file($foto_tmp_name, IMAGE_LOCATION.$fotoNaam);
+         $result = \move_uploaded_file($foto_tmp_name, IMAGE_LOCATION . $fotoNaam);
          if ($result === false) {
              return IMAGE_FAILURE_SAVE_FAILED;
          }
-         return  IMAGE_SUCCES;
+         return  IMAGE_SUCCESS;
     }
     
     /**
@@ -86,8 +86,8 @@ final class Foto
     * @param string $naam de naam van de te verwijderen afbeelding
     */
     public static function verwijderAfbeelding($naam) {
-        if(\file_exists(IMAGE_LOCATION.$naam)) {
-            unlink(IMAGE_LOCATION.$naam);
+        if(\file_exists(IMAGE_LOCATION . $naam)) {
+            unlink(IMAGE_LOCATION . $naam);
         }
     }
 }

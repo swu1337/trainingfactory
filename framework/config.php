@@ -4,6 +4,7 @@ const DATA_SOURCE_NAME = 'mysql:dbname=trainingfactory;host=127.0.0.1;charset=ut
 const DB_USERNAME = 'root';
 const DB_PASSWORD = '';
 const DEFAULT_ROLE = 'bezoeker';
+const IMAGE_LOCATION = 'img/';
 
 const REQUEST_SUCCESS = 1;
 const REQUEST_FAILURE_DATA_INVALID = 2;

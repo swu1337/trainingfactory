@@ -42,7 +42,7 @@ abstract class AbstractModel
     * @return Persoon in casu de gebruiker van de applicatie die ook in de sessie staat of null als er geen sessie of een lege sessie is
     */
     public function getGebruiker() {
-        if(!isset($_SESSION)||!isset($_SESSION['gebruiker'])||empty($_SESSION['gebruiker'])) {
+        if(!isset($_SESSION) || !isset($_SESSION['gebruiker']) || empty($_SESSION['gebruiker'])) {
             return NULL;
         }
         else {
