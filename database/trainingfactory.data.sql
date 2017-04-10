@@ -26,8 +26,10 @@ INSERT INTO `persons`
  `role`)
 VALUES
 (NULL,'member','qwerty','member','van','trainingfactory','2017-04-04','male','member@member.com',NULL,NULL,'street1','1234AB','The Hague','member'),
-(NULL,'member1','qwerty','member1','van','trainingfactory','2016-03-01','male','member1@member.com',NULL,NULL,'street11','1131AB','The Hague','member'),
+(NULL,'member1','qwerty','member1','van','trainingfactory1','2016-03-01','male','member1@member.com',NULL,NULL,'street11','1131AB','The Hague','member'),
+(NULL,'member2','qwerty','member2','van','trainingfactory2','2015-03-06','male','member2@member.com',NULL,NULL,'street12','1231AB','The Hague','member'),
 (NULL,'instructor','qwerty','instructor','van','trainingfactory','2017-04-04','male','instructor@instructor.com','2013-04-04','2500.00','street2','2134AB','The Hague','instructor'),
+(NULL,'instructor1','qwerty','instructor1','van1','trainingfactory1','2011-03-11','male','instructor1@instructor.com','2009-04-01','2800.00','street5','2114AB','The Hague','instructor'),
 (NULL,'admin','qwerty','admin','van','trainingfactory','2013-04-04','female','admin@admin.com','2012-04-04','2500.00','street3','2134AC','The Hague','admin');
 
 --
