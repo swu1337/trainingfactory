@@ -21,6 +21,5 @@ const DB_NOT_ACCEPTABLE_DATA = 9;
 
 const VIEW_PATH = 'dev/view/templates/';
 
-
 const PARAM_URL_INVALID = 10;
 const PARAM_URL_INCOMPLETE = 11;

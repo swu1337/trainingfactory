@@ -19,11 +19,11 @@ class AdminModel extends AbstractModel
                     $sql = "SELECT * FROM `lessons`";
                     break;
                 case 'instructor':
-                    $sql = "SELECT * FROM `persons` WHERE role = 'instructor'";
+                    $sql = "SELECT *, DATE_FORMAT(`dateofbirth`, '%d-%m-%Y') AS \"dateofbirth\" FROM `persons` WHERE role = 'instructor'";
                     $prop = 'person';
                     break;
                 case 'member':
-                    $sql = "SELECT * FROM `persons` WHERE role = 'member'";
+                    $sql = "SELECT *, DATE_FORMAT(`dateofbirth`, '%d-%m-%Y') AS \"dateofbirth\" FROM `persons` WHERE role = 'member'";
                     $prop = 'person';
                     break;
                 default:
@@ -45,10 +45,10 @@ class AdminModel extends AbstractModel
                         $sql = "SELECT * FROM `trainings` WHERE id = :id LIMIT 1";
                         break;
                     case 'lesson':
-                        $sql = "SELECT * FROM `lessons` WHERE id = :id LIMIT 1";
+                        $sql = "SELECT *, DATE_FORMAT(`dateofbirth`, '%d-%m-%Y') AS \"dateofbirth\" FROM `lessons` WHERE id = :id LIMIT 1";
                         break;
                     case 'person':
-                        $sql = "SELECT * FROM `persons` WHERE id = :id LIMIT 1";
+                        $sql = "SELECT *, DATE_FORMAT(`dateofbirth`, '%d-%m-%Y') AS \"dateofbirth\" FROM `persons` WHERE id = :id LIMIT 1";
                         break;
                     default:
                         return PARAM_URL_INVALID;

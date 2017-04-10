@@ -41,8 +41,58 @@
 <!-- Edit field for Member -->
 <?php if(isset($member)) : ?>
     <div class="container-fluid">
-        <?php var_dump($member); ?>
-        //TODO:: Show member info in a form
+        <h2>Details van <?= $member->getName(); ?></h2>
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post" autocomplete="off" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="dateofbirth" class="col-md-3 control-label">Geboortedatum:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="dateofbirth" id="dateofbirth" placeholder="Geboortedatum" value=<?= $member->getDateofbirth(); ?>>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginname" class="col-md-3 control-label">Gebruikersnaam:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="loginname" id="loginname" placeholder="Gebruikersnaam" value=<?= $member->getLoginname(); ?>>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender" class="col-md-3 control-label">Geslacht:</label>
+                        <div class="col-md-9">
+                            <select class="form-control" id="gender">
+                                <option <?= $member->getGender() === 'male' ? 'selected' : ''; ?> value="male">Male</option>
+                                <option <?= $member->getGender() === 'female' ? 'selected' : ''; ?>  value="female">Female</option>
+                                <option <?= $member->getGender() === 'other' ? 'selected' : ''; ?> value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="street" class="col-md-3 control-label">Adres:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="street" id="street" placeholder="Adres" value=<?= $member->getStreet(); ?>>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="postal_code" class="col-md-3 control-label">Postcode:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="postal_code" id="postal_code" placeholder="Postcode" value=<?= $member->getPostal_code(); ?>>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email_address" class="col-md-3 control-label">Email:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="email_address" id="email_address" placeholder="Email" value=<?= $member->getEmail_address(); ?>>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn btn-primary">Wijzig</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 <?php endif; ?>
 
