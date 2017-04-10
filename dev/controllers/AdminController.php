@@ -15,7 +15,7 @@ class AdminController extends AbstractController
 
     protected function instructorsAction() {
         $this->view->set('gebruiker', $this->model->getGebruiker());
-        $request = $this->model->getObject('person');
+        $request = $this->model->getObject('instructor');
 
         if(is_int($request)) {
             switch($request) {
@@ -33,7 +33,8 @@ class AdminController extends AbstractController
 
     protected function membersAction() {
         $this->view->set('gebruiker', $this->model->getGebruiker());
-        $request = $this->model->getObject('person');
+        $request = $this->model->getObject('member');
+
         if(is_int($request)) {
             switch($request) {
                 case PARAM_URL_INCOMPLETE:
@@ -72,8 +73,6 @@ class AdminController extends AbstractController
 
         switch ($prop) {
             case 'instructor':
-                $request = $this->model->getObject('person', $_GET['id']);
-                break;
             case 'member':
                 $request = $this->model->getObject('person', $_GET['id']);
                 break;
@@ -81,7 +80,7 @@ class AdminController extends AbstractController
                 $request = $this->model->getObject('training', $_GET['id']);
                 break;
             default :
-                $request = PARAM_URL_INVALIDL;
+                $request = PARAM_URL_INVALID;
         }
 
         if(is_int($request)) {
@@ -95,6 +94,44 @@ class AdminController extends AbstractController
             }
         } else {
             $this->view->set("$prop", $request);
+        }
+
+        if(!$this->model->isPostLeeg()) {
+            switch ($prop) {
+                case 'instructor':
+                    $request = $this->model->edit('person', $_GET['id']);
+                    break;
+                case 'member':
+                    $request = $this->model->edit('person', $_GET['id']);
+                    break;
+                case 'training':
+                    $request = $this->model->edit('training', $_GET['id']);
+                    break;
+                default:
+                    $request = PARAM_URL_INCOMPLETE;
+            }
+
+            switch ($request) {
+                case REQUEST_SUCCESS:
+                    $this->view->set("msg", "De $prop is gewijzigd");
+                    $this->forward($prop . 's');
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("msg", "Fout invoer");
+                    break;
+                case REQUEST_FAILURE_DATA_INCOMPLETE:
+                    $this->view->set("msg", "Niet alle gegevens zijn ingevuld!");
+                    break;
+                case REQUEST_NOTHING_CHANGED:
+                    $this->view->set("msg", "Er niks te wijzigen");
+                    break;
+                case PARAM_URL_INCOMPLETE:
+                    $this->view->set('msg', 'Incomplete URL Parameters');
+                    break;
+                case PARAM_URL_INVALID:
+                    $this->view->set('msg', 'Invalid URL Parameters');
+                    break;
+            }
         }
     }
 
@@ -133,7 +170,5 @@ class AdminController extends AbstractController
         }
 
         $this->forward($prop . 's');
-
-
     }
 }

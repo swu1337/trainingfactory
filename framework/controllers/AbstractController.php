@@ -14,7 +14,7 @@ abstract class AbstractController implements IController
         $this->control = $control;
         $this->action = $action;
         $this->view = new \framework\view\View();
-        $modelClassName = BASE_NAMESPACE . 'models\\'.ucfirst($this->control)."Model";
+        $modelClassName = BASE_NAMESPACE . 'models\\' . ucfirst($this->control) . "Model";
 
         if(!class_exists($modelClassName)) {
             throw new ERROR\FrameworkException("klasse $modelClassName bestaat niet!!!");  

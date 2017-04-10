@@ -18,23 +18,13 @@ class AdminModel extends AbstractModel
                 case 'lesson':
                     $sql = "SELECT * FROM `lessons`";
                     break;
-                case 'person':
-                    $type = filter_input(INPUT_GET, 'type');
-                    if(!empty($type)) {
-                        switch ($_GET['type']) {
-                            case 'member':
-                                $sql = "SELECT * FROM `persons` WHERE role = 'member'";
-                                break;
-                            case 'instructor':
-                                $sql = "SELECT * FROM `persons` WHERE role = 'instructor'";
-                                break;
-                            default:
-                                return PARAM_URL_INCOMPLETE;
-                        }
-                    } else {
-                        return PARAM_URL_INVALID;
-                    }
-
+                case 'instructor':
+                    $sql = "SELECT * FROM `persons` WHERE role = 'instructor'";
+                    $prop = 'person';
+                    break;
+                case 'member':
+                    $sql = "SELECT * FROM `persons` WHERE role = 'member'";
+                    $prop = 'person';
                     break;
                 default:
                     return PARAM_URL_INVALID;
@@ -46,6 +36,7 @@ class AdminModel extends AbstractModel
             if($stmnt->rowCount() < 1) {
                 return null;
             }
+
             return $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\\' . ucfirst($prop));
         } else {
             if(filter_var($id, FILTER_VALIDATE_INT)) {
@@ -84,8 +75,6 @@ class AdminModel extends AbstractModel
                 $sql = "DELETE FROM `trainings` WHERE id = :id";
                 break;
             case 'member':
-                $sql = "DELETE FROM `persons` WHERE id = :id";
-                break;
             case 'instructor':
                 $sql = "DELETE FROM `persons` WHERE id = :id";
                 break;
@@ -113,5 +102,65 @@ class AdminModel extends AbstractModel
         } else {
             return PARAM_URL_INCOMPLETE;
         }
+    }
+
+    public function edit($prop, $id) {
+        switch ($prop) {
+            case 'training':
+                $description = filter_input(INPUT_POST, 'description');
+                $duration = filter_input(INPUT_POST, 'duration');
+
+
+                if(in_array(null, [$description, $duration])) {
+                    return REQUEST_FAILURE_DATA_INCOMPLETE;
+                }
+
+                if(!empty($_POST['extra_costs'])) {
+                    $extra = filter_input(INPUT_POST, 'extra_costs', FILTER_VALIDATE_FLOAT);
+                } else {
+                    $extra = NULL;
+                }
+
+                if(!\DateTime::createFromFormat('G:i:s', $duration)) {
+                    return REQUEST_FAILURE_DATA_INVALID;
+                }
+
+                if($extra === false) {
+                    return REQUEST_FAILURE_DATA_INVALID;
+                }
+
+                $sql = "UPDATE `trainings` SET `description` = :desc, `duration` = :dur, `extra_costs` = :ec WHERE id = :id";
+                $stmnt = $this->db->prepare($sql);
+                $stmnt->bindParam(':desc', $description);
+                $stmnt->bindParam(':dur', $duration);
+                $stmnt->bindParam(':ec', $extra);
+                break;
+//            case 'member':
+//                break;
+//            case 'instructor':
+//                break;
+            default:
+                return PARAM_URL_INVALID;
+        }
+
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if(!$id) {
+            return PARAM_URL_INVALID;
+        }
+
+        $stmnt->bindParam(':id', $id);
+
+        try {
+            $stmnt->execute();
+        } catch (\PDOException $e) {
+            return REQUEST_FAILURE_DATA_INVALID;
+        }
+
+        if($stmnt->rowCount() === 1) {
+            return REQUEST_SUCCESS;
+        }
+
+        return REQUEST_NOTHING_CHANGED;
     }
 }

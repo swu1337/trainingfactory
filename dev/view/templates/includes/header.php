@@ -42,8 +42,8 @@
                         <!-- Navigation for a Admin -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'admin'): ?>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=instructors&type=instructor"?>>Instructeurs</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=members&type=member"?>>Leden</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=instructors"?>>Instructeurs</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=members"?>>Leden</a></li>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=trainings"?>>Trainingen</a></li>
                         <?php endif; ?>
 
@@ -71,7 +71,7 @@
                     <?php else: ?>
                         <div class="navbar-right">
                             <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
-                            <p class="nav-text text-right">- <?= $gebruiker->getRole(); ?> -</p>
+                            <p class="nav-text text-right">- <?= ucfirst($gebruiker->getRole()); ?> -</p>
                             <a class="btn btn-danger pull-right" href=<?= "?control=" . $gebruiker->getRole() . "&action=uitloggen"?>>Logout</a>
                         </div>
                     <?php endif; ?>
