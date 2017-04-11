@@ -15,9 +15,6 @@ class AdminModel extends AbstractModel
                 case 'training':
                     $sql = "SELECT * FROM `trainings`";
                     break;
-                case 'lesson':
-                    $sql = "SELECT * FROM `lessons`";
-                    break;
                 case 'instructor':
                     $sql = "SELECT *, DATE_FORMAT(`dateofbirth`, '%d-%m-%Y') AS \"dateofbirth\" FROM `persons` WHERE role = 'instructor'";
                     $prop = 'person';
@@ -43,9 +40,6 @@ class AdminModel extends AbstractModel
                 switch ($prop) {
                     case 'training':
                         $sql = "SELECT * FROM `trainings` WHERE id = :id LIMIT 1";
-                        break;
-                    case 'lesson':
-                        $sql = "SELECT *, DATE_FORMAT(`dateofbirth`, '%d-%m-%Y') AS \"dateofbirth\" FROM `lessons` WHERE id = :id LIMIT 1";
                         break;
                     case 'person':
                         $sql = "SELECT *, DATE_FORMAT(`dateofbirth`, '%d-%m-%Y') AS \"dateofbirth\" FROM `persons` WHERE id = :id LIMIT 1";
@@ -162,5 +156,9 @@ class AdminModel extends AbstractModel
         }
 
         return REQUEST_NOTHING_CHANGED;
+    }
+
+    public function getReservations($id) {
+
     }
 }

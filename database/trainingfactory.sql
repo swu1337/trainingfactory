@@ -78,7 +78,7 @@ CREATE TABLE `lessons` (
 CREATE TABLE `registrations` (
   `lesson_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
-  `payment` varchar(30) DEFAULT NULL,
+  `payment` enum('paid', 'unpaid') NOT NULL DEFAULT 'unpaid',
   CONSTRAINT `registrations_lesson_id_member_id_pk` PRIMARY KEY (`lesson_id`, `member_id`)
 ) ENGINE=InnoDB;
 

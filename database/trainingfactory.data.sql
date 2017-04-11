@@ -87,13 +87,13 @@ INSERT INTO `registrations`
  `member_id`, 
  `payment`)
 VALUES 
-(1, 1, 'what is this?1'),
-(1, 2, 'what is this?2'),
-(2, 1, 'what is this?1'),
-(2, 2, 'what is this?2'),
-(3, 1, 'what is this?1'),
-(3, 2, 'what is this?2'),
-(4, 1, 'what is this?1'),
-(4, 2, 'what is this?2'),
-(11, 1, 'what is this?1'),
-(11, 2, 'what is this?2');
+(1, 1, 'unpaid'),
+(1, 2, 'paid'),
+(2, 1, 'paid'),
+(2, 2, 'unpaid'),
+(3, 1, 'paid'),
+(3, 2, 'paid'),
+(4, 1, 'paid'),
+(4, 2, 'unpaid'),
+(11, 1, 'unpaid'),
+(11, 2, 'unpaid');
