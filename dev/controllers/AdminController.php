@@ -74,26 +74,31 @@ class AdminController extends AbstractController
         switch ($prop) {
             case 'instructor':
             case 'member':
-                $request = $this->model->getObject('person', $_GET['id']);
+                $requests['member'] = $this->model->getObject('person', $_GET['id']);
+                $requests['registrations'] = $this->model->getRegistrations($_GET['id']);
                 break;
             case 'training':
-                $request = $this->model->getObject('training', $_GET['id']);
+                $requests['training'] = $this->model->getObject('training', $_GET['id']);
                 break;
             default :
-                $request = PARAM_URL_INVALID;
+                $requests[] = PARAM_URL_INVALID;
         }
 
-        if(is_int($request)) {
-            switch($request) {
-                case PARAM_URL_INCOMPLETE:
-                    $this->view->set('msg', 'Incomplete URL Parameters');
-                    break;
-                case PARAM_URL_INVALID:
-                    $this->view->set('msg', 'Invalid URL Parameters');
-                    break;
+        foreach ($requests as $request => $value) {
+            if(is_array($value) || is_object($value)) {
+                $this->view->set($request, $value);
+            } else {
+                switch($value) {
+                    case PARAM_URL_INCOMPLETE:
+                        $this->view->set('msg', 'Incomplete URL Parameters');
+                        break;
+                    case PARAM_URL_INVALID:
+                        $this->view->set('msg', 'Invalid URL Parameters');
+                        break;
+                    case REQUEST_NO_DATA:
+                        $this->view->set($request, null);
+                }
             }
-        } else {
-            $this->view->set("$prop", $request);
         }
 
         if(!$this->model->isPostLeeg()) {
