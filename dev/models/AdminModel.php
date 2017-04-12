@@ -104,7 +104,6 @@ class AdminModel extends AbstractModel
                 $description = filter_input(INPUT_POST, 'description');
                 $duration = filter_input(INPUT_POST, 'duration');
 
-
                 if(in_array(null, [$description, $duration])) {
                     return REQUEST_FAILURE_DATA_INCOMPLETE;
                 }
@@ -128,9 +127,49 @@ class AdminModel extends AbstractModel
                 $stmnt->bindParam(':desc', $description);
                 $stmnt->bindParam(':dur', $duration);
                 $stmnt->bindParam(':ec', $extra);
+
                 break;
-//            case 'member':
-//                break;
+            case 'member':
+                $dateofbirth = filter_input(INPUT_POST, 'dateofbirth');
+                $loginname = filter_input(INPUT_POST, 'loginname');
+                $gender = filter_input(INPUT_POST, 'gender');
+                $street = filter_input(INPUT_POST, 'street');
+                $postal_code = filter_input(INPUT_POST, 'postal_code');
+                $place = filter_input(INPUT_POST, 'place');
+                $email_address = filter_input(INPUT_POST, 'email_address', FILTER_VALIDATE_EMAIL);
+
+                if(in_array(null, [$dateofbirth, $loginname, $gender, $street, $postal_code, $place, $email_address])) {
+                    return REQUEST_FAILURE_DATA_INCOMPLETE;
+                }
+
+                $dateofbirth = strtotime($dateofbirth);
+
+                if(in_array(false,[$email_address, $dateofbirth], true)) {
+                    return REQUEST_FAILURE_DATA_INVALID;
+                }
+
+                $dateofbirth = date('Y-m-d', $dateofbirth);
+
+
+                $sql = "UPDATE `persons` 
+                            SET dateofbirth = :dateofbirth,
+                                loginname = :loginname,
+                                gender = :gender, 
+                                street = :street, 
+                                postal_code = :postal_code,
+                                place = :place,
+                                email_address = :email_address
+                            WHERE id = :id";
+
+                $stmnt = $this->db->prepare($sql);
+                $stmnt->bindParam(':dateofbirth', $dateofbirth);
+                $stmnt->bindParam(':loginname', $loginname);
+                $stmnt->bindParam(':gender', $gender);
+                $stmnt->bindParam(':street', $street);
+                $stmnt->bindParam(':postal_code', $postal_code);
+                $stmnt->bindParam(':place', $place);
+                $stmnt->bindParam(':email_address', $email_address);
+                break;
 //            case 'instructor':
 //                break;
             default:
@@ -148,6 +187,10 @@ class AdminModel extends AbstractModel
         try {
             $stmnt->execute();
         } catch (\PDOException $e) {
+            if($e->getCode() == 23000) {
+                return DB_NOT_ACCEPTABLE_DATA;
+            }
+
             return REQUEST_FAILURE_DATA_INVALID;
         }
 

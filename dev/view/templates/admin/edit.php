@@ -48,19 +48,19 @@
                     <div class="form-group">
                         <label for="dateofbirth" class="col-md-3 control-label">Geboortedatum:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="dateofbirth" id="dateofbirth" placeholder="Geboortedatum" value=<?= $member->getDateofbirth(); ?>>
+                            <input type="text" class="form-control" name="dateofbirth" id="dateofbirth" placeholder="Geboortedatum" value="<?= $member->getDateofbirth(); ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="loginname" class="col-md-3 control-label">Gebruikersnaam:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="loginname" id="loginname" placeholder="Gebruikersnaam" value=<?= $member->getLoginname(); ?>>
+                            <input type="text" class="form-control" name="loginname" id="loginname" placeholder="Gebruikersnaam" value="<?= $member->getLoginname(); ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="gender" class="col-md-3 control-label">Geslacht:</label>
                         <div class="col-md-9">
-                            <select class="form-control" id="gender">
+                            <select class="form-control" name="gender" id="gender">
                                 <option <?= $member->getGender() === 'male' ? 'selected' : ''; ?> value="male">Male</option>
                                 <option <?= $member->getGender() === 'female' ? 'selected' : ''; ?>  value="female">Female</option>
                                 <option <?= $member->getGender() === 'other' ? 'selected' : ''; ?> value="other">Other</option>
@@ -70,19 +70,25 @@
                     <div class="form-group">
                         <label for="street" class="col-md-3 control-label">Adres:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="street" id="street" placeholder="Adres" value=<?= $member->getStreet(); ?>>
+                            <input type="text" class="form-control" name="street" id="street" placeholder="Adres" value="<?= $member->getStreet(); ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="postal_code" class="col-md-3 control-label">Postcode:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="postal_code" id="postal_code" placeholder="Postcode" value=<?= $member->getPostal_code(); ?>>
+                            <input type="text" class="form-control" name="postal_code" id="postal_code" placeholder="Postcode" value="<?= $member->getPostal_code(); ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="place" class="col-md-3 control-label">Woonplaats:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="place" id="place" placeholder="Woonplaats" value="<?= $member->getPlace(); ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email_address" class="col-md-3 control-label">Email:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="email_address" id="email_address" placeholder="Email" value=<?= $member->getEmail_address(); ?>>
+                            <input type="text" class="form-control" name="email_address" id="email_address" placeholder="Email" value="<?= $member->getEmail_address(); ?>">
                         </div>
                     </div>
                     <div class="form-group">

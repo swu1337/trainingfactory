@@ -107,7 +107,7 @@ class AdminController extends AbstractController
                     $request = $this->model->edit('person', $_GET['id']);
                     break;
                 case 'member':
-                    $request = $this->model->edit('person', $_GET['id']);
+                    $request = $this->model->edit('member', $_GET['id']);
                     break;
                 case 'training':
                     $request = $this->model->edit('training', $_GET['id']);
@@ -136,6 +136,8 @@ class AdminController extends AbstractController
                 case PARAM_URL_INVALID:
                     $this->view->set('msg', 'Invalid URL Parameters');
                     break;
+                case DB_NOT_ACCEPTABLE_DATA:
+                    $this->view->set('msg', 'Email of Gebruikersnaam is al in gebruik');
             }
         }
     }
