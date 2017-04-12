@@ -3,13 +3,19 @@
     <?php include VIEW_PATH . 'includes/intro-image.php';?>
     <div class="registration-holder">
         <h2>Gedragsregels</h2>
-        <p>Bij onze vereniging hanteren wij een aantal regels:</p>
-        <ul>
-            <li>Niet schelden.</li>
-            <li>Geen agressief gedrag tonen.</li>
-            <li>Optijd betalen.</li>
-            <li>Respect voor de instructeurs en onze regels.</li>  
-        </ul>
+<p>Mensen die naar een sportschool komen, doen dit voor een goede en ontspannen training. Ze willen deze tijd dan ook zo aangenaam mogelijk kunnen besteden. Ook mensen die naar een sportschool komen hebben geen zeeën van tijd en willen hun tijd goed kunnen benutten. Daarom is er ook zoiets als een Gym Etiquette, waarin een ongeschreven lijst van gedragsregels het verblijf op de sportschool zo aangenaam mogelijk moet maken.</p>
+<p>Zo geldt als eerste dus ook dat je vriendelijk bent tegen je medesporters. Schreeuw en vloek niet en maak niet teveel herrie. Iedereen moet zich thuis kunnen voelen in een sportschool.</p>
+<p>Stoor mensen die midden in een set bezig zijn niet. Dit houdt in dat je niet gaat praten met iemand die met een oefening bezig is. Iemand die serieus aan het trainen is heeft zijn concentratie nodig en wil dan ook niet aangestaard of aangesproken worden. De plaats om een praatje te maken is de bar of buiten.</p>
+<p>Daarnaast is het zeer onbeleefd om voor iemand te gaan staan die een spiegel gebruikt, omdat het vaak nodig is om je vorm te bekijken in de spiegel bij een goede training.</p>
+<p>Een vierde afspraak is dat het gebruik van een handdoek in een sportschool verplicht is. Dit voorkomt dat iemand die na jou gebruik maakt van het materiaal of toestel in jou zweet moet gaan trainen. Een toestel schoonmaken en achterlaten zoals je het aantrof na het gebruik behoort daarom ook tot de etiquette. Gewichten dienen na het gebruik weer terug in de rekken opgeborgen te worden. Een volgende persoon kan een blessure oplopen door het opruimen van jouw achtergelaten gewichten.</p>
+<p>Gewichten horen daarnaast niet alleen opgeruimd te worden, maar moeten ook met enige voorzichtigheid gebruikt worden. Dumbells na het gebruik op de grond gooien is gevaarlijk maar kan een sportschool daarnaast ook op kosten jagen.</p>
+<p>Een andere regel, waar veel mensen zich wellicht niet bewust van zijn is dat je tijdens het trainen tussen een set door van het apparatuur af gaat. Niet alleen voor jezelf is dit beter, maar dit is ook vriendelijker tegenover anderen. Ten eerste kun je je spieren dan even los gooien en gun je een ander eventueel een set tussendoor te doen. Mocht je behoefte hebben om te praten, dan is het niet erg als je dit tussen de setjes door doet, maar als je dit constant doet en ook nog op luide toon dan kunnen andere sporters zich hier aan gaan ergeren. Houdt er dan ook rekening mee dat sommige mensen rustig willen trainen.</p>
+<p>Een irritatie die veel in sportscholen voorkomt, wordt veroorzaakt door mensen die tijdens het trainen uitgebreid gaan bellen. Sport je, dan werk je niet. Een mobiele telefoon laat je dan ook uit of minstens op stil.<br>
+<p>Een andere zeer belangrijke regel die je in een sportschool in acht moet nemen, omdat veel mensen de vorm van hun lichaam willen kunnen zien, is anderen niet voortdurend aan te staren. Gedraag je dus tegenover leden van de andere sekse, maar zorg er ook voor dat je niet al te aanstootgevende kleding aantrekt.</p>
+<p>De persoonlijke hygiëne van iemand is in een sportschool heel belangrijk. Kom je al bij het binnenwandelen met een niet zo frisse geur aanzetten, hoe zal je dan na een trainingssessie ruiken? Twee weken in sportkleding sporten zonder deze te wassen kan ook echt niet. Na het sporten moet je sportkleding echt in de was. Zorg ervoor dat je altijd deodorant op hebt en geen parfum of aftershave gebruikt. Pas na het sporten en douchen zijn parfum en aftershave gepast. Trainen in de parfumlucht van een ander is vreselijk. In de regel zorg je er dus voor dat je schoon en fris bent voor het sporten en na het sporten.</p>
+<p>Wil je iemand mee laten sporten, houdt er dan rekening mee dat het constant verwisselen van gewichten veel werk kan inhouden. Dit geldt er dus ook voor als je zelf met iemand mee wilt trainen. Verschil in lengte brengt het steeds opnieuw afstellen van iedere set en apparatuur te weeg. Hiermee kun je anderen in de sportschool belemmeren. Houd hier dus rekening mee.</p>
+En een laatste regel die voor veel dames geldt, maar ook zeer zeker voor de heren. Roddel niet over anderen in de sportschool. Wat anderen doen gaat jou helemaal niets aan. Als je wilt praten over mensen, ga dan naar buiten.
+
     </div>
 </div>
 <?php include VIEW_PATH . 'includes/footer.php';?>
