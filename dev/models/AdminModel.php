@@ -150,7 +150,6 @@ class AdminModel extends AbstractModel
 
                 $dateofbirth = date('Y-m-d', $dateofbirth);
 
-
                 $sql = "UPDATE `persons` 
                             SET dateofbirth = :dateofbirth,
                                 loginname = :loginname,
