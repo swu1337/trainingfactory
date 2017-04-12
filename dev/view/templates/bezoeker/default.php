@@ -1,8 +1,8 @@
 <?php include VIEW_PATH . 'includes/header.php';?>
-<?= isset($msg) ? $msg : ''; ?>
 <div class="content-holder">
     <div class="content-holder">
         <?php include VIEW_PATH . 'includes/intro-image.php';?>
+        <?= isset($msg) ? $msg : ''; ?>
     </div>
     <div class="text-holder">
         <h2>Welkom bij Training Centrum Den Haag</h2>

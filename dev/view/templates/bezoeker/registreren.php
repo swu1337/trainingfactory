@@ -1,7 +1,7 @@
 <?php include VIEW_PATH . 'includes/header.php';?>
-<?= $msg ;?>
 <div class="content-holder">
     <?php include VIEW_PATH . 'includes/intro-image.php';?>
+    <?= $msg ;?>
     <div class="registration-holder">
         <h2>Lid Worden</h2>
         <p>Om gebruik te maken van de lessen moet je bij ons bekend zijn.

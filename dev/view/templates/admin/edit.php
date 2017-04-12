@@ -1,7 +1,6 @@
 <?php include VIEW_PATH . 'includes/header.php';?>
 <?php include VIEW_PATH . 'includes/intro-image.php';?>
 <?= isset($msg) ? $msg : ''; ?>
-
 <!-- Edit field for Instructor -->
 <?php if(isset($instructor)) : ?>
     <div class="container-fluid">
