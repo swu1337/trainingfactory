@@ -25,10 +25,11 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse-wrapper">
                     <h2 class="navbar-text">Training Centrum Den Haag</h2>
                     <ul class="nav navbar-nav">
+
                         <!-- Navigation for a Member -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'member'): ?>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
-                            <li><a href="#">Inschrijven op les</a></li>
+                            <li><a href="?control=member&action=inschrijven">Inschrijven op les</a></li>
                             <li><a href="#">Overzicht inschrijvingen</a></li>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=gegevenswijzigen&id=" . $gebruiker->getId() ?>>Gegevens Wijzigen</a></li>
                         <?php endif; ?>
