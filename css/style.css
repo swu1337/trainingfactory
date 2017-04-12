@@ -5,36 +5,5 @@
 @import url("partials/navbar.css");
 @import url("helper/helper.css");
 
-.content-holder{
-    width: 100%;
-}
-
-.content-img{
-    width: 325px;
-    height: 300px;
-    margin-left: 40px;
-    margin-bottom: 15px;
-}
-
-.registration-holder{
-    margin-left: 21%;
-}
-
-.text-holder{
-    width: 600px;
-    margin-left: 21%;
-}
-
-.registration-input{
-    width: 300px;
-}
-
-.left-registration-holder{
-    width: 400px;
-    float: left;
-}
-
-.right-registration-holder{
-    width: 400px;
-    float: left;
-}
+@import url("partials/content.css");
+@import url("partials/registration.css");

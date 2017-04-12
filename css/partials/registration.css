@@ -1,0 +1,22 @@
+.registration-holder{
+    margin-left: 21%;
+}
+
+.text-holder{
+    width: 600px;
+    margin-left: 21%;
+}
+
+.registration-input{
+    width: 300px;
+}
+
+.left-registration-holder{
+    width: 400px;
+    float: left;
+}
+
+.right-registration-holder{
+    width: 400px;
+    float: left;
+}

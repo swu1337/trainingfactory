@@ -19,7 +19,7 @@ class BezoekerModel extends AbstractModel
             $sth->bindParam(':ln', $ln);
             $sth->bindParam(':pw', $pw);
             $sth->execute();
-            //var_dump($sth->fetchAll(\PDO::FETCH_ASSOC));
+
             $result = $sth->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\Person');
 
             if(count($result) === 1) {

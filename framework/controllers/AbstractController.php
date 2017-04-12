@@ -14,7 +14,7 @@ abstract class AbstractController implements IController
         $this->control = $control;
         $this->action = $action;
         $this->view = new \framework\view\View();
-        $modelClassName = BASE_NAMESPACE . 'models\\'.ucfirst($this->control)."Model";
+        $modelClassName = BASE_NAMESPACE . 'models\\' . ucfirst($this->control) . "Model";
 
         if(!class_exists($modelClassName)) {
             throw new ERROR\FrameworkException("klasse $modelClassName bestaat niet!!!");  
@@ -33,14 +33,14 @@ abstract class AbstractController implements IController
 
         if($gebruikersRecht !== $this->control) {
             $this->model->stopSession();
-            $this->view->set('msg','je doet rare dingen met deze applicatie. Gebruik de gewone formulieren');
+            $this->view->set('msg', 'je doet rare dingen met deze applicatie. Gebruik de gewone formulieren');
             $this->forward('default', DEFAULT_ROLE);
         }
     }
    
     
     public function execute() {
-        $opdracht = $this->action."Action";
+        $opdracht = $this->action . "Action";
 
         if(method_exists($this, $opdracht)) {
             $this->$opdracht();
@@ -52,11 +52,12 @@ abstract class AbstractController implements IController
         }
     }
     
-    protected function forward($action, $control=null) {
+    protected function forward($action, $control = null) {
         $action = strtolower(trim($action));
+
         if(isset($control)) {
             
-            $klasseNaam = BASE_NAMESPACE.'controllers\\'.ucFirst($control).'Controller';
+            $klasseNaam = BASE_NAMESPACE . 'controllers\\' . ucFirst($control) . 'Controller';
             if(!class_exists($klasseNaam)) {
                 throw new ERROR\FrameworkException("klas $klasseNaam bestaat niet!!!");  
             }
@@ -65,7 +66,7 @@ abstract class AbstractController implements IController
                 throw new ERROR\FrameworkException("klas $klasseNaam erft niet van framework AbstractController");
             }
 
-            $controller = new $klasseNaam($control,$action);
+            $controller = new $klasseNaam($control, $action);
         } else {
             $controller = $this;
             $this->action = $action;
