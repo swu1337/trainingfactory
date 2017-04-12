@@ -120,7 +120,7 @@
                                         <td><?= $registration->getTime();?></td>
                                         <td><?= $registration->getLocation();?></td>
                                         <td><?= $registration->getDescription();?></td>
-                                        <td><?= $registration->getExtra_costs();?></td>
+                                        <td><?= !empty($registration->getExtra_costs())? '&euro; ' . $registration->getExtra_costs() : '-';?></td>
                                         <td>
                                             <div class="checkbox">
                                                 <label>

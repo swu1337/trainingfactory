@@ -211,25 +211,37 @@ class AdminModel extends AbstractModel
 
         $stmnt->bindParam(':id', $id);
 
-        try {
-            $stmnt->execute();
-
-            foreach ($stmnts as $sth) {
-                $sth->bindParam(':m_id', $id);
-                $sth->execute();
+        if(isset($stmnts)) {
+            try {
+                $stmnt->execute();
+                foreach ($stmnts as $sth) {
+                    $sth->bindParam(':m_id', $id);
+                    $sth->execute();
+                }
+            } catch (\PDOException $e) {
+                if($e->getCode() == 23000) {
+                    return DB_NOT_ACCEPTABLE_DATA;
+                }
+                return REQUEST_FAILURE_DATA_INVALID;
             }
 
+            $response = array_map(function($r) { return $r->rowCount() === 1; }, $stmnts);
+
+            if($stmnt->rowCount() === 1 || in_array(true, $response)) {
+                return REQUEST_SUCCESS;
+            }
+        }
+
+        try {
+            $stmnt->execute();
         } catch (\PDOException $e) {
             if($e->getCode() == 23000) {
                 return DB_NOT_ACCEPTABLE_DATA;
             }
-
             return REQUEST_FAILURE_DATA_INVALID;
         }
 
-        $response = array_map(function($r) { return $r->rowCount() === 1; }, $stmnts);
-
-        if($stmnt->rowCount() === 1 || in_array(true, $response)) {
+        if($stmnt->rowCount() === 1) {
             return REQUEST_SUCCESS;
         }
 
