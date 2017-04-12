@@ -34,7 +34,7 @@ CREATE TABLE `persons` (
   `role` enum('instructor', 'member', 'admin') NOT NULL DEFAULT 'member',
   CONSTRAINT `persons_id_pk` PRIMARY KEY (`id`),
   CONSTRAINT `persons_loginname_uk` UNIQUE(`loginname`),
-  CONSTRAINT `persons_email_address_uk` UNIQUE(`loginname`)
+  CONSTRAINT `persons_email_address_uk` UNIQUE(`email_address`)
 ) ENGINE=InnoDB;
 
 -- --------------------------------------------------------
