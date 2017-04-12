@@ -1,11 +1,7 @@
 <?php include VIEW_PATH . 'includes/header.php';?>
 <?= $msg ;?>
 <div class="content-holder">
-    <img src="img/boxing.jpg" class="content-img" />
-    <img src="img/boxing.jpg" class="content-img" />
-    <img src="img/boxing.jpg" class="content-img" />
-    <img src="img/boxing.jpg" class="content-img" />
-    <img src="img/boxing.jpg" class="content-img" />
+    <?php include VIEW_PATH . 'includes/intro-image.php';?>
     <div class="registration-holder">
         <h2>Lid Worden</h2>
         <p>Om gebruik te maken van de lessen moet je bij ons bekend zijn.

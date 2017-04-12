@@ -26,8 +26,10 @@ INSERT INTO `persons`
  `role`)
 VALUES
 (NULL,'member','qwerty','member','van','trainingfactory','2017-04-04','male','member@member.com',NULL,NULL,'street1','1234AB','The Hague','member'),
-(NULL,'member1','qwerty','member1','van','trainingfactory','2016-03-01','male','member1@member.com',NULL,NULL,'street11','1131AB','The Hague','member'),
+(NULL,'member1','qwerty','member1','van','trainingfactory1','2016-03-01','male','member1@member.com',NULL,NULL,'street11','1131AB','The Hague','member'),
+(NULL,'member2','qwerty','member2','van','trainingfactory2','2015-03-06','male','member2@member.com',NULL,NULL,'street12','1231AB','The Hague','member'),
 (NULL,'instructor','qwerty','instructor','van','trainingfactory','2017-04-04','male','instructor@instructor.com','2013-04-04','2500.00','street2','2134AB','The Hague','instructor'),
+(NULL,'instructor1','qwerty','instructor1','van1','trainingfactory1','2011-03-11','male','instructor1@instructor.com','2009-04-01','2800.00','street5','2114AB','The Hague','instructor'),
 (NULL,'admin','qwerty','admin','van','trainingfactory','2013-04-04','female','admin@admin.com','2012-04-04','2500.00','street3','2134AC','The Hague','admin');
 
 --
@@ -85,13 +87,13 @@ INSERT INTO `registrations`
  `member_id`, 
  `payment`)
 VALUES 
-(1, 1, 'what is this?1'),
-(1, 2, 'what is this?2'),
-(2, 1, 'what is this?1'),
-(2, 2, 'what is this?2'),
-(3, 1, 'what is this?1'),
-(3, 2, 'what is this?2'),
-(4, 1, 'what is this?1'),
-(4, 2, 'what is this?2'),
-(11, 1, 'what is this?1'),
-(11, 2, 'what is this?2');
+(1, 1, 'unpaid'),
+(1, 2, 'paid'),
+(2, 1, 'paid'),
+(2, 2, 'unpaid'),
+(3, 1, 'paid'),
+(3, 2, 'paid'),
+(4, 1, 'paid'),
+(4, 2, 'unpaid'),
+(11, 1, 'unpaid'),
+(11, 2, 'unpaid');

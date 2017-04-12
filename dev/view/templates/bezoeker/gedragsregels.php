@@ -1,10 +1,6 @@
 <?php include VIEW_PATH . 'includes/header.php';?>
 <div class="content-holder">
-    <img src="img/boxing.jpg" class="content-img" />
-    <img src="img/boxing.jpg" class="content-img" />
-    <img src="img/boxing.jpg" class="content-img" />
-    <img src="img/boxing.jpg" class="content-img" />
-    <img src="img/boxing.jpg" class="content-img" />
+    <?php include VIEW_PATH . 'includes/intro-image.php';?>
     <div class="registration-holder">
         <h2>Gedragsregels</h2>
         <p>Bij onze vereniging hanteren wij een aantal regels:</p>
