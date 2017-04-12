@@ -99,6 +99,12 @@ class AdminModel extends AbstractModel
     }
 
     public function edit($prop, $id) {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if(!$id) {
+            return PARAM_URL_INVALID;
+        }
+
         switch ($prop) {
             case 'training':
                 $description = filter_input(INPUT_POST, 'description');
@@ -175,12 +181,6 @@ class AdminModel extends AbstractModel
                 $stmnt->bindParam(':place', $place);
                 $stmnt->bindParam(':email_address', $email_address);
 
-                $id = filter_var($id, FILTER_VALIDATE_INT);
-
-                if(!$id) {
-                    return PARAM_URL_INVALID;
-                }
-
                 $payments = array_map(function($v) { return (int)$v; }, $payments);
                 $m_registrations = $this->getRegistrations($id);
 
@@ -207,12 +207,6 @@ class AdminModel extends AbstractModel
 //                break;
             default:
                 return PARAM_URL_INVALID;
-        }
-
-        $id = filter_var($id, FILTER_VALIDATE_INT);
-
-        if(!$id) {
-            return PARAM_URL_INVALID;
         }
 
         $stmnt->bindParam(':id', $id);
