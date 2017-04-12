@@ -27,6 +27,7 @@ class BezoekerController extends AbstractController
                     $this->view->set("msg", "Niet alle gegevens ingevuld");
                     break;
             }
+            $this->forward("default");
         }
     }
 
