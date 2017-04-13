@@ -99,6 +99,12 @@ class AdminModel extends AbstractModel
     }
 
     public function edit($prop, $id) {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if(!$id) {
+            return PARAM_URL_INVALID;
+        }
+
         switch ($prop) {
             case 'training':
                 $description = filter_input(INPUT_POST, 'description');
@@ -138,14 +144,20 @@ class AdminModel extends AbstractModel
                 $place = filter_input(INPUT_POST, 'place');
                 $email_address = filter_input(INPUT_POST, 'email_address', FILTER_VALIDATE_EMAIL);
 
+                $payments = filter_input(INPUT_POST, 'payments', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
                 if(in_array(null, [$dateofbirth, $loginname, $gender, $street, $postal_code, $place, $email_address])) {
                     return REQUEST_FAILURE_DATA_INCOMPLETE;
                 }
 
                 $dateofbirth = strtotime($dateofbirth);
 
-                if(in_array(false,[$email_address, $dateofbirth], true)) {
+                if(in_array(false, [$email_address, $dateofbirth, $payments], true)) {
                     return REQUEST_FAILURE_DATA_INVALID;
+                }
+
+                if($payments === null) {
+                    $payments = [];
                 }
 
                 $dateofbirth = date('Y-m-d', $dateofbirth);
@@ -168,6 +180,28 @@ class AdminModel extends AbstractModel
                 $stmnt->bindParam(':postal_code', $postal_code);
                 $stmnt->bindParam(':place', $place);
                 $stmnt->bindParam(':email_address', $email_address);
+
+                $payments = array_map(function($v) { return (int)$v; }, $payments);
+                $m_registrations = $this->getRegistrations($id);
+
+                $stmnts = [];
+
+                foreach ($m_registrations as $member_r) {
+                    if(in_array($member_r->getLesson_id(), $payments)) {
+                        $rsql = "UPDATE `registrations` 
+                                 SET payment = 'paid' 
+                                 WHERE lesson_id = :l_id AND member_id = :m_id";
+                    } else {
+                        $rsql = "UPDATE `registrations` 
+                                 SET payment = 'unpaid' 
+                                 WHERE lesson_id = :l_id AND member_id = :m_id";
+                    }
+
+                    $sth = $this->db->prepare($rsql);
+                    $sth->bindValue(':l_id', $member_r->getLesson_id());
+                    array_push($stmnts, $sth);
+                }
+
                 break;
 //            case 'instructor':
 //                break;
@@ -175,13 +209,28 @@ class AdminModel extends AbstractModel
                 return PARAM_URL_INVALID;
         }
 
-        $id = filter_var($id, FILTER_VALIDATE_INT);
-
-        if(!$id) {
-            return PARAM_URL_INVALID;
-        }
-
         $stmnt->bindParam(':id', $id);
+
+        if(isset($stmnts)) {
+            try {
+                $stmnt->execute();
+                foreach ($stmnts as $sth) {
+                    $sth->bindParam(':m_id', $id);
+                    $sth->execute();
+                }
+            } catch (\PDOException $e) {
+                if($e->getCode() == 23000) {
+                    return DB_NOT_ACCEPTABLE_DATA;
+                }
+                return REQUEST_FAILURE_DATA_INVALID;
+            }
+
+            $response = array_map(function($r) { return $r->rowCount() === 1; }, $stmnts);
+
+            if($stmnt->rowCount() === 1 || in_array(true, $response)) {
+                return REQUEST_SUCCESS;
+            }
+        }
 
         try {
             $stmnt->execute();
@@ -189,7 +238,6 @@ class AdminModel extends AbstractModel
             if($e->getCode() == 23000) {
                 return DB_NOT_ACCEPTABLE_DATA;
             }
-
             return REQUEST_FAILURE_DATA_INVALID;
         }
 
