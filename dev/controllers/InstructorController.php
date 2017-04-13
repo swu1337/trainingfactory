@@ -12,4 +12,14 @@ class InstructorController extends AbstractController
     protected function defaultAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
     }
+    
+    protected function plannenAction() {
+        $this->view->set("gebruiker", $this->model->getGebruiker());
+        
+        $lessen=$this->model->getLessen();
+        $this->view->set("lessen",$lessen);
+        
+        $trainingen=$this->model->getTrainings();
+        $this->view->set("trainingen",$trainingen);
+    }
 }
