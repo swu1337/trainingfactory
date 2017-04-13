@@ -17,6 +17,15 @@ class MemberController extends AbstractController
         $this->view->set("gebruiker", $this->model->getGebruiker());
     }
     
+    protected function inschrijvingenoverzichtAction()
+    {        
+        $gebruiker = $this->model->getGebruiker();
+        $this->view->set('gebruiker', $gebruiker);
+        $request = $this->model->getRegistrations($gebruiker->getId());
+        $this->view->set('registrations', $request);
+    }
+    
+    
     protected function gegevensWijzigenAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
 

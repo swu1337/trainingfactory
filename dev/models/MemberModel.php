@@ -65,4 +65,25 @@ class MemberModel extends AbstractModel
         $stmnt->execute();
         $_SESSION['gebruiker'] = $stmnt->fetch(\PDO::FETCH_CLASS);
     }
+    
+    public function getRegistrations($id) {
+        $sql = "SELECT registrations.lesson_id, count(registrations.lesson_id) AS \"current_amount\", registrations.payment, lessons.time, DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\", lessons.location, lessons.max_persons, lessons.instructor_id, trainings.description, trainings.duration, trainings.extra_costs, registrations.member_id FROM registrations JOIN lessons ON registrations.lesson_id = lessons.id JOIN trainings ON lessons.training_id = trainings.id WHERE registrations.member_id = :id GROUP BY registrations.lesson_id, registrations.payment, lessons.time, lessons.location, lessons.max_persons, lessons.instructor_id, trainings.description, trainings.duration, trainings.extra_costs, registrations.member_id";
+
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        
+        if($id) {
+            $stmnt = $this->db->prepare($sql);
+            $stmnt->bindParam(':id', $id);
+            $stmnt->execute();
+
+            if($stmnt->rowCount() > 0) {
+                return $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\Registration');
+            } else {
+                return REQUEST_NO_DATA;
+            }
+        } else {
+            return PARAM_URL_INCOMPLETE;
+        }
+    }
+    
 }
