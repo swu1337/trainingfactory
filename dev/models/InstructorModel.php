@@ -27,7 +27,6 @@ class InstructorModel extends AbstractModel
     
     public function lesMaken()
     {
-        
         $datum = filter_input(INPUT_POST, 'datum');
         $tijd = filter_input(INPUT_POST, 'tijd');
         $sport = filter_input(INPUT_POST, 'sport');
@@ -38,9 +37,7 @@ class InstructorModel extends AbstractModel
             return REQUEST_FAILURE_DATA_INCOMPLETE;
         }
 
-        $sql=   "INSERT INTO `persons` (loginname,firstname,preprovision,lastname, 
-                dateofbirth,email_address,gender,street,postal_code,place,role,password)VALUES (:gebruikersnaam,:voornaam,:tussenvoegsel,:achternaam, 
-                :geboortedatum,:email,:geslacht,:straat,:postcode,:stad,'member',:wachtwoord) ";
+        $sql=   "INSERT INTO `lessons` ";
             
         $stmnt = $this->db->prepare($sql);
         $stmnt->bindParam(':datum', $datum);
