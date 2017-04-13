@@ -37,7 +37,7 @@
                         <!-- Navigation for a Instructor -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'instructor'): ?>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
-                            <li><a href="#">Plannen Lessen</a></li>
+                            <li><a href="?control=instructor&action=plannen">Plannen Lessen</a></li>
                             <li><a href="#">Lessen Beheer</a></li>
                         <?php endif; ?>
                         <!-- Navigation for a Admin -->
