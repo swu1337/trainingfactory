@@ -65,4 +65,11 @@ class MemberModel extends AbstractModel
         $stmnt->execute();
         $_SESSION['gebruiker'] = $stmnt->fetch(\PDO::FETCH_CLASS);
     }
+
+    public function getAllLessons() {
+        $sql = "SELECT * FROM `lessons`";
+        $stmnt = $this->db->prepare($sql);
+        $stmnt->execute();
+        return $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\Lesson');
+    }
 }

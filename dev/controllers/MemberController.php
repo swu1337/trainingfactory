@@ -15,6 +15,7 @@ class MemberController extends AbstractController
 
     protected function inschrijvenAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
+        $this->view->set("lessons", $this->model->getAllLessons());
     }
     
     protected function gegevensWijzigenAction() {
