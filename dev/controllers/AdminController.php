@@ -73,6 +73,8 @@ class AdminController extends AbstractController
 
         switch ($prop) {
             case 'instructor':
+                $requests['instructor'] = $this->model->getObject('person', $_GET['id']);
+                break;
             case 'member':
                 $requests['member'] = $this->model->getObject('person', $_GET['id']);
                 $requests['registrations'] = $this->model->getRegistrations($_GET['id']);
@@ -104,10 +106,10 @@ class AdminController extends AbstractController
         if(!$this->model->isPostLeeg()) {
             switch ($prop) {
                 case 'instructor':
-                    $request = $this->model->edit('person', $_GET['id']);
+                    $request = $this->model->edit('instructor', $_GET['id']);
                     break;
                 case 'member':
-                    $request = $this->model->edit('person', $_GET['id']);
+                    $request = $this->model->edit('member', $_GET['id']);
                     break;
                 case 'training':
                     $request = $this->model->edit('training', $_GET['id']);
@@ -136,6 +138,8 @@ class AdminController extends AbstractController
                 case PARAM_URL_INVALID:
                     $this->view->set('msg', 'Invalid URL Parameters');
                     break;
+                case DB_NOT_ACCEPTABLE_DATA:
+                    $this->view->set('msg', 'Email of Gebruikersnaam is al in gebruik');
             }
         }
     }
@@ -176,4 +180,4 @@ class AdminController extends AbstractController
 
         $this->forward($prop . 's');
     }
-}
+    }

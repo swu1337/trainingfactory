@@ -18,7 +18,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img alt="Brand" src="https://placeholdit.imgix.net/~text?txtsize=13&txt=75%C3%9775&w=100&h=100"></a>
+                    <a class="navbar-brand logo" href="#"><img class="logo" alt="Logo" src="img/logo.png"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
