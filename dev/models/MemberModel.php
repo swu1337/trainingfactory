@@ -66,8 +66,13 @@ class MemberModel extends AbstractModel
         $_SESSION['gebruiker'] = $stmnt->fetch(\PDO::FETCH_CLASS);
     }
 
-    public function getAllLessons() {
+    public function getAllLessons($isDistinct = null) {
         $sql = "SELECT * FROM `lessons`";
+
+        if($isDistinct) {
+            $sql = "SELECT * FROM `lessons` GROUP BY date ORDER BY date";
+        }
+
         $stmnt = $this->db->prepare($sql);
         $stmnt->execute();
         return $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\Lesson');
