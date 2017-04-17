@@ -127,7 +127,6 @@ class MemberModel extends AbstractModel
         } else {
             return PARAM_URL_INCOMPLETE;
         }
-
     }
 
 }
