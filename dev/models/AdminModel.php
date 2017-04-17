@@ -71,14 +71,11 @@ class AdminModel extends AbstractModel
                 JOIN trainings 
                 ON lessons.training_id = trainings.id
                 WHERE registrations.member_id = :id";
-
         $id = filter_var($id, FILTER_VALIDATE_INT);
-
         if($id) {
             $stmnt = $this->db->prepare($sql);
             $stmnt->bindParam(':id', $id);
             $stmnt->execute();
-
             if($stmnt->rowCount() > 0) {
                 return $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\Registration');
             } else {
@@ -307,7 +304,6 @@ class AdminModel extends AbstractModel
         try {
             $stmnt->execute();
         } catch (\PDOException $e) {
-            var_dump($e);
             if($e->getCode() == 23000) {
                 return DB_NOT_ACCEPTABLE_DATA;
             }

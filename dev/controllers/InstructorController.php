@@ -16,10 +16,10 @@ class InstructorController extends AbstractController
     protected function plannenAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
         
-        $lessen=$this->model->getLessen();
-        $this->view->set("lessen",$lessen);
+        $lessen = $this->model->getLessen();
+        $this->view->set("lessen", $lessen);
         
-        $trainingen=$this->model->getTrainings();
-        $this->view->set("trainingen",$trainingen);
+        $trainingen = $this->model->getTrainings();
+        $this->view->set("trainingen", $trainingen);
     }
 }

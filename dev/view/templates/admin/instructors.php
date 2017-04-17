@@ -31,7 +31,7 @@
                 </tr>
             <?php $z++; endforeach; ?>
             <?php else: ?>
-                <p class="lead text-center">Data No Found</p>
+                <p class="lead text-center">Geen Data Gevonden</p>
             <?php endif; ?>
             </tbody>
         </table>
