@@ -73,7 +73,7 @@
                         <div class="navbar-right">
                             <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
                             <p class="nav-text text-right">- <?= ucfirst($gebruiker->getRole()); ?> -</p>
-                            <a class="btn btn-danger pull-right" href=<?= "?control=" . $gebruiker->getRole() . "&action=uitloggen"?>>Logout</a>
+                            <a class="btn btn-danger pull-right" href=<?= "?control=" . $gebruiker->getRole() . "&action=uitloggen"?>><span class="glyphicon glyphicon-log-out log-out-btn" aria-hidden="true"></span></a>
                         </div>
                     <?php endif; ?>
                 </div>

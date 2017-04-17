@@ -1,18 +1,19 @@
 <?php include VIEW_PATH . 'includes/header.php';?>
 <div class="content-holder">
     <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
-    <?= isset($msg) ? $msg : ''; ?> 
+    <?= isset($msg) ? $msg : ''; ?>
     <div class="text-holder">
         <h2>Overzicht inschrijvingen</h2>
-        <table class="table table-striped">
+        <div class="table-responsive">
+            <table class="table table-striped">
             <thead>
             <tr>
                 <th>#</th>
                 <th>Datum</th>
-                <th>Tijd</th>
+                <th>Duratie</th>
                 <th>Sport</th>
                 <th>Aantal ingeschreven deelnemers</th>
-                <th>extra kosten (EUR)</th>
+                <th>Extra kosten</th>
                 <th>Uitschrijven</th>
             </tr>
             </thead>
@@ -20,19 +21,21 @@
             <?php if(isset($registrations)): ?>
             <?php $z = 1; foreach ($registrations as $r): ?>
                 <tr>
-                    <td><?= $r->getLesson_id(); ?></td>
+                    <th><?= $z; ?></th>
                     <td><?= $r->getDate(); ?></td>
                     <td><?= $r->getDuration(); ?></td>
                     <td><?= $r->getDescription(); ?></td>
-                    <td><?= $r->getCurrent_amount(); ?></td>
+                    <td><?= $r->getRegistered(); ?></td>
                     <td><?= !empty($r->getExtra_costs())? '&euro; ' . $r->getExtra_costs() : '-'; ?></td>
-                    <td><a href="#"></a></span></td>
+                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=uitschrijven&id=" . $r->getId(); ?>><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></td>
                 </tr>
             <?php $z++; endforeach; ?>
             <?php else: ?>
-                <p class="lead text-center">Data No Found</p>
+                <p class="lead text-center">Geen Data Gevonden</p>
             <?php endif; ?>
             </tbody>
         </table>
+        </div>
     </div>
+</div>
 <?php include VIEW_PATH . 'includes/footer.php';?>

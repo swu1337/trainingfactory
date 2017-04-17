@@ -67,7 +67,23 @@ class MemberModel extends AbstractModel
     }
     
     public function getRegistrations($id) {
-        $sql = "SELECT registrations.lesson_id, count(registrations.lesson_id) AS \"current_amount\", registrations.payment, lessons.time, DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\", lessons.location, lessons.max_persons, lessons.instructor_id, trainings.description, trainings.duration, trainings.extra_costs, registrations.member_id FROM registrations JOIN lessons ON registrations.lesson_id = lessons.id JOIN trainings ON lessons.training_id = trainings.id WHERE registrations.member_id = :id GROUP BY registrations.lesson_id, registrations.payment, lessons.time, lessons.location, lessons.max_persons, lessons.instructor_id, trainings.description, trainings.duration, trainings.extra_costs, registrations.member_id";
+        $sql = "SELECT lessons.id,
+                       COUNT(registrations.lesson_id) AS \"registered\",
+                       registrations.payment,
+                       lessons.time, 
+                       DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\",
+                       lessons.location, lessons.max_persons, 
+                       lessons.instructor_id, 
+                       trainings.description, 
+                       trainings.duration, 
+                       trainings.extra_costs, 
+                       registrations.member_id 
+                 FROM lessons 
+                 JOIN trainings ON lessons.training_id = trainings.id 
+                 LEFT JOIN registrations ON lessons.id = registrations.lesson_id 
+                 WHERE lessons.id IN (SELECT registrations.lesson_id from registrations where registrations.member_id = :id) 
+                 GROUP BY lessons.id
+                 ORDER BY lessons.id";
 
         $id = filter_var($id, FILTER_VALIDATE_INT);
         
@@ -85,5 +101,33 @@ class MemberModel extends AbstractModel
             return PARAM_URL_INCOMPLETE;
         }
     }
-    
+
+    public function lesUitschrijven($id) {
+        $sql = "DELETE FROM registrations WHERE registrations.lesson_id = :l_id AND registrations.member_id = :m_id";
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if($id) {
+            $stmnt = $this->db->prepare($sql);
+            $m_id = $this->getGebruiker()->getId();
+            $stmnt->bindParam(':l_id', $id);
+            $stmnt->bindParam(':m_id', $m_id);
+
+            try {
+                $stmnt->execute();
+            } catch (\PDOException $e) {
+                var_dump($e);
+                return REQUEST_FAILURE_DATA_INVALID;
+            }
+
+            if($stmnt->rowCount() === 1) {
+                return REQUEST_SUCCESS;
+            }
+
+            return REQUEST_NOTHING_CHANGED;
+        } else {
+            return PARAM_URL_INCOMPLETE;
+        }
+
+    }
+
 }

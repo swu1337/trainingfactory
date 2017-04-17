@@ -17,15 +17,25 @@ class MemberController extends AbstractController
         $this->view->set("gebruiker", $this->model->getGebruiker());
     }
     
-    protected function inschrijvingenoverzichtAction()
-    {        
+    protected function inschrijvingenoverzichtAction() {
         $gebruiker = $this->model->getGebruiker();
         $this->view->set('gebruiker', $gebruiker);
         $request = $this->model->getRegistrations($gebruiker->getId());
-        $this->view->set('registrations', $request);
+
+        if(is_int($request)) {
+            switch($request) {
+                case REQUEST_NO_DATA:
+                    $this->view->set('registrations', null);
+                    break;
+                case PARAM_URL_INVALID:
+                    $this->view->set('msg', 'Invalid URL Parameters');
+                    break;
+            }
+        } else {
+            $this->view->set('registrations', $request);
+        }
     }
-    
-    
+
     protected function gegevensWijzigenAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
 
@@ -47,5 +57,24 @@ class MemberController extends AbstractController
                      break;     
             }
         }
+    }
+
+    protected function uitschrijvenAction() {
+        switch ($this->model->lesUitschrijven($_GET['id'])) {
+            case REQUEST_SUCCESS:
+                $this->view->set("msg", "U heeft voor de les uitgeschreven.");
+                break;
+            case REQUEST_FAILURE_DATA_INVALID:
+                $this->view->set("msg", "De request naar de server is niet voldaan");
+                break;
+            case REQUEST_NOTHING_CHANGED:
+                $this->view->set("msg", "Er niks te uitschrijven");
+                break;
+            case PARAM_URL_INCOMPLETE:
+                $this->view->set('msg', 'Incomplete URL Parameters');
+                break;
+        }
+
+        $this->forward('inschrijvingenoverzicht');
     }
 }

@@ -88,12 +88,17 @@ INSERT INTO `registrations`
  `payment`)
 VALUES 
 (1, 1, 'unpaid'),
-(1, 2, 'paid'),
 (2, 1, 'paid'),
-(2, 2, 'unpaid'),
 (3, 1, 'paid'),
-(3, 2, 'paid'),
-(4, 1, 'paid'),
+(4, 1, 'unpaid'),
+(11, 1, 'paid'),
+(1, 2, 'paid'),
+(2, 2, 'paid'),
+(3, 2, 'unpaid'),
 (4, 2, 'unpaid'),
-(11, 1, 'unpaid'),
-(11, 2, 'unpaid');
+(14, 2, 'unpaid'),
+(10, 3, 'unpaid'),
+(11, 3, 'unpaid'),
+(12, 3, 'unpaid'),
+(13, 3, 'unpaid'),
+(14, 3, 'unpaid');
