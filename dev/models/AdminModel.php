@@ -63,6 +63,29 @@ class AdminModel extends AbstractModel
         }
     }
 
+    public function getRegistrations($id) {
+        $sql = "SELECT lesson_id, payment, time, DATE_FORMAT(date, '%d-%m-%Y') AS \"date\", location, max_persons, instructor_id, description, duration, extra_costs
+                FROM registrations
+                JOIN lessons
+                ON registrations.lesson_id = lessons.id
+                JOIN trainings 
+                ON lessons.training_id = trainings.id
+                WHERE registrations.member_id = :id";
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        if($id) {
+            $stmnt = $this->db->prepare($sql);
+            $stmnt->bindParam(':id', $id);
+            $stmnt->execute();
+            if($stmnt->rowCount() > 0) {
+                return $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\Registration');
+            } else {
+                return REQUEST_NO_DATA;
+            }
+        } else {
+            return PARAM_URL_INCOMPLETE;
+        }
+    }
+
     public function delete($prop, $id) {
         switch ($prop) {
             case 'training':
