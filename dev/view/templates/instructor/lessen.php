@@ -11,7 +11,7 @@
             <th>Lokaal</th>
             <th>Sport</th>
             <th>Aantal ingeschreven deelnemers</th>
-            <th>Deelnerslijst</th>
+            <th>Deelnemerslijst</th>
             <th>Aanpassen</th>
         </tr>
         </thead>
@@ -21,9 +21,13 @@
                     <td><?= $l->getDate(); ?></td>
                     <td><?= $l->getTime(); ?></td>
                     <td><?= $l->getLocation(); ?></td>
-                    <td><?= "sport join";?></td>
-                    <td><?= "count join";?></td>
-                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=viewmembers&id=" . $l->getLesson_id(); ?>><span class="glyphicon glyphicon-list" aria-hidden="true"></a></span></td>
+                    <td><?= $l->getDescription(); ?></td>
+                    <td><?= $l->getRegistered(); ?></td>
+                    <td>
+                        <?php if($l->getRegistered() > 0): ?>
+                        <a href=<?= "?control=" . $gebruiker->getRole() . "&action=viewmembers&id=" . $l->getLesson_id(); ?>><span class="glyphicon glyphicon-list" aria-hidden="true"></a></span></td>
+                        <?php endif; ?>
+                    </td>
                     <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=edit&id=" . $l->getLesson_id(); ?>><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
