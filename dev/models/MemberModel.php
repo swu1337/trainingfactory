@@ -67,7 +67,7 @@ class MemberModel extends AbstractModel
     }
     
     public function getRegistrations($id) {
-        $sql = "SELECT lessons.id,
+        $sql = "SELECT lessons.id as \"lesson_id\",
                        COUNT(registrations.lesson_id) AS \"registered\",
                        registrations.payment,
                        lessons.time, 
@@ -115,7 +115,6 @@ class MemberModel extends AbstractModel
             try {
                 $stmnt->execute();
             } catch (\PDOException $e) {
-                var_dump($e);
                 return REQUEST_FAILURE_DATA_INVALID;
             }
 

@@ -1,6 +1,6 @@
-<?php include VIEW_PATH . 'includes/header.php';?>
+<?php include VIEW_PATH . 'includes/header.php'; ?>
 <div class="content-holder">
-    <?php include VIEW_PATH . 'includes/intro-image.php';?>
+    <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
     <?= $msg ;?>
     <div class="registration-holder">
         <h2>Lid Worden</h2>
@@ -52,4 +52,4 @@
         </form>
     </div>
 </div>
-<?php include VIEW_PATH . 'includes/footer.php';?>
+<?php include VIEW_PATH . 'includes/footer.php'; ?>

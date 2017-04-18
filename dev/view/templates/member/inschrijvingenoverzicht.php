@@ -1,4 +1,4 @@
-<?php include VIEW_PATH . 'includes/header.php';?>
+<?php include VIEW_PATH . 'includes/header.php'; ?>
 <div class="content-holder">
     <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
     <?= isset($msg) ? $msg : ''; ?>
@@ -27,7 +27,7 @@
                     <td><?= $r->getDescription(); ?></td>
                     <td><?= $r->getRegistered(); ?></td>
                     <td><?= !empty($r->getExtra_costs())? '&euro; ' . $r->getExtra_costs() : '-'; ?></td>
-                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=uitschrijven&id=" . $r->getId(); ?>><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></td>
+                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=uitschrijven&id=" . $r->getLesson_id(); ?>><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></td>
                 </tr>
             <?php $z++; endforeach; ?>
             <?php else: ?>
@@ -38,4 +38,4 @@
         </div>
     </div>
 </div>
-<?php include VIEW_PATH . 'includes/footer.php';?>
+<?php include VIEW_PATH . 'includes/footer.php'; ?>

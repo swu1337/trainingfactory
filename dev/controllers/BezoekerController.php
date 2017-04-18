@@ -35,8 +35,8 @@ class BezoekerController extends AbstractController
     }
     
     protected function aanbodAction() {
-        $soortTrainingen=$this->model->getSoortTrainingen();
-        $this->view->set("soortTrainingen",$soortTrainingen);
+        $soortTrainingen = $this->model->getSoortTrainingen();
+        $this->view->set("soortTrainingen", $soortTrainingen);
     }
     
     protected function gedragsregelsAction() {
