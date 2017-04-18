@@ -75,7 +75,6 @@ class InstructorModel extends AbstractModel
         try {
             $stmnt->execute();
         } catch(\PDOEXception $e) {
-            var_dump($e);
             return REQUEST_FAILURE_DATA_INVALID;
         }
         
