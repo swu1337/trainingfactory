@@ -15,7 +15,6 @@ class MemberController extends AbstractController
 
     protected function viewlessenAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
-        $this->view->set("lessons", $this->model->getAllLessons());
         $this->view->set("schedule", $this->model->getSchedule());
     }
     
