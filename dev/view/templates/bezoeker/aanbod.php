@@ -1,6 +1,6 @@
-<?php include VIEW_PATH . 'includes/header.php';?>
+<?php include VIEW_PATH . 'includes/header.php'; ?>
     <div class="content-holder">
-        <?php include VIEW_PATH . 'includes/intro-image.php';?>
+        <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
     </div>
     <div class="registration-holder">
         <h2>Hier zijn alle cursussen die wij aanbieden</h2>

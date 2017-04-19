@@ -1,5 +1,5 @@
-<?php include VIEW_PATH . 'includes/header.php';?>
-<?php include VIEW_PATH . 'includes/intro-image.php';?>
+<?php include VIEW_PATH . 'includes/header.php'; ?>
+<?php include VIEW_PATH . 'includes/intro-image.php'; ?>
 <?= isset($msg) ? $msg : ''; ?>
     <div class="container-fluid">
         <h2>Overzicht Trainingen</h2>
@@ -27,9 +27,9 @@
                 </tr>
             <?php $z++; endforeach; ?>
             <?php else: ?>
-                <p class="lead text-center">Data No Found</p>
+                <p class="lead text-center">Geen Data Gevonden</p>
             <?php endif; ?>
             </tbody>
         </table>
     </div>
-<?php include VIEW_PATH . 'includes/footer.php';?>
+<?php include VIEW_PATH . 'includes/footer.php'; ?>

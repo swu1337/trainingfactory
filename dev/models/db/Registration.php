@@ -16,6 +16,7 @@ class Registration extends Entiteit
     protected $description;
     protected $duration;
     protected $extra_costs;
+    protected $registered;
 
     public function __construct() {
         $this->lesson_id = filter_var($this->lesson_id, FILTER_VALIDATE_INT);

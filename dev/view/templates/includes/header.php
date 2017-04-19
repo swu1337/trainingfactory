@@ -28,24 +28,25 @@
 
                         <!-- Navigation for a Member -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'member'): ?>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=inschrijven"?>>Inschrijven op les</a></li>
-                            <li><a href="#">Overzicht inschrijvingen</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=gegevenswijzigen&id=" . $gebruiker->getId() ?>>Gegevens Wijzigen</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"; ?>>Home</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=inschrijven"; ?>>Inschrijven op les</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=inschrijvingenoverzicht"; ?>>Overzicht inschrijvingen</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=gegevenswijzigen&id=" . $gebruiker->getId(); ?>>Gegevens Wijzigen</a></li>
                         <?php endif; ?>
 
                         <!-- Navigation for a Instructor -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'instructor'): ?>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
-                            <li><a href="#">Plannen Lessen</a></li>
-                            <li><a href="#">Lessen Beheer</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"; ?>>Home</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=plannen"; ?>>Plannen Lessen</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=lessen"; ?>>Lessen Beheer</a></li>
                         <?php endif; ?>
+
                         <!-- Navigation for a Admin -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'admin'): ?>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=instructors"?>>Instructeurs</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=members"?>>Leden</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=trainings"?>>Trainingen</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"; ?>>Home</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=instructors"; ?>>Instructeurs</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=members"; ?>>Leden</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=trainings"; ?>>Trainingen</a></li>
                         <?php endif; ?>
 
                         <!-- Default Navigation -->
@@ -73,7 +74,7 @@
                         <div class="navbar-right">
                             <p class="nav-text lead text-right"><?= $gebruiker->getName(); ?></p>
                             <p class="nav-text text-right">- <?= ucfirst($gebruiker->getRole()); ?> -</p>
-                            <a class="btn btn-danger pull-right" href=<?= "?control=" . $gebruiker->getRole() . "&action=uitloggen"?>>Logout</a>
+                            <a class="btn btn-danger pull-right" href=<?= "?control=" . $gebruiker->getRole() . "&action=uitloggen"?>><span class="glyphicon glyphicon-log-out log-out-btn" aria-hidden="true"></span></a>
                         </div>
                     <?php endif; ?>
                 </div>

@@ -23,10 +23,31 @@ class MemberModel extends AbstractModel
         $sd = filter_input(INPUT_POST, 'stad');
 
         if(empty($ww)) {
-            $sql = "UPDATE `persons`SET firstname = :voornaam, preprovision = :tussenvoegsel, lastname = :achternaam, dateofbirth = :geboortedatum, email_address = :email, gender = :geslacht, street = :straat, postal_code = :postcode, place = :stad WHERE `id` = :id";
+            $sql = "UPDATE `persons`
+                    SET firstname = :voornaam,
+                        preprovision = :tussenvoegsel,
+                        lastname = :achternaam,
+                        dateofbirth = :geboortedatum,
+                        email_address = :email,
+                        gender = :geslacht,
+                        street = :straat,
+                        postal_code = :postcode,
+                        place = :stad
+                        WHERE `id` = :id";
             $stmnt = $this->db->prepare($sql);
         } else {
-            $sql = "UPDATE `persons`SET firstname = :voornaam, preprovision = :tussenvoegsel, lastname = :achternaam, dateofbirth = :geboortedatum, email_address = :email, gender = :geslacht, street = :straat, postal_code = :postcode, place = :stad, password = :wachtwoord WHERE `id` = :id";
+            $sql = "UPDATE `persons` 
+                    SET firstname = :voornaam,
+                    preprovision = :tussenvoegsel,
+                    lastname = :achternaam,
+                    dateofbirth = :geboortedatum,
+                    email_address = :email,
+                    gender = :geslacht,
+                    street = :straat,
+                    postal_code = :postcode,
+                    place = :stad,
+                    password = :wachtwoord
+                    WHERE `id` = :id";
             $stmnt = $this->db->prepare($sql);
             $stmnt->bindParam(':wachtwoord', $ww);
         }
@@ -53,7 +74,7 @@ class MemberModel extends AbstractModel
             return REQUEST_SUCCESS;
         }
 
-        return REQUEST_FAILURE_DATA_INVALID; 
+        return REQUEST_NOTHING_CHANGED;
     }
     
     private function updateGebruiker() {
@@ -65,6 +86,69 @@ class MemberModel extends AbstractModel
         $stmnt->execute();
         $_SESSION['gebruiker'] = $stmnt->fetch(\PDO::FETCH_CLASS);
     }
+
+    public function getRegistrations($id) {
+        $sql = "SELECT lessons.id as \"lesson_id\",
+                       COUNT(registrations.lesson_id) AS \"registered\",
+                       registrations.payment,
+                       lessons.time, 
+                       DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\",
+                       lessons.location, lessons.max_persons, 
+                       lessons.instructor_id, 
+                       trainings.description, 
+                       trainings.duration, 
+                       trainings.extra_costs, 
+                       registrations.member_id 
+                 FROM lessons 
+                 JOIN trainings ON lessons.training_id = trainings.id 
+                 LEFT JOIN registrations ON lessons.id = registrations.lesson_id 
+                 WHERE lessons.id IN (SELECT registrations.lesson_id from registrations where registrations.member_id = :id) 
+                 GROUP BY lessons.id
+                 ORDER BY lessons.id";
+
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if($id) {
+            $stmnt = $this->db->prepare($sql);
+            $stmnt->bindParam(':id', $id);
+            $stmnt->execute();
+
+            if($stmnt->rowCount() > 0) {
+                return $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\db\Registration');
+            } else {
+                return REQUEST_NO_DATA;
+            }
+        } else {
+            return PARAM_URL_INCOMPLETE;
+        }
+    }
+
+    public function lesUitschrijven($id) {
+        $sql = "DELETE FROM registrations WHERE registrations.lesson_id = :l_id AND registrations.member_id = :m_id";
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if($id) {
+            $stmnt = $this->db->prepare($sql);
+            $m_id = $this->getGebruiker()->getId();
+            $stmnt->bindParam(':l_id', $id);
+            $stmnt->bindParam(':m_id', $m_id);
+
+            try {
+                $stmnt->execute();
+            } catch (\PDOException $e) {
+                return REQUEST_FAILURE_DATA_INVALID;
+            }
+
+            if($stmnt->rowCount() === 1) {
+                return REQUEST_SUCCESS;
+            }
+
+            return REQUEST_NOTHING_CHANGED;
+        } else {
+            return PARAM_URL_INCOMPLETE;
+        }
+    }
+
 
     public function getAllLessons($isDistinct = null) {
         $sql = "SELECT * FROM `lessons`";

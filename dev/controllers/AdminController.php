@@ -180,4 +180,4 @@ class AdminController extends AbstractController
 
         $this->forward($prop . 's');
     }
-    }
+}
