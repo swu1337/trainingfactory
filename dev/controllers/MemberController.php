@@ -13,10 +13,10 @@ class MemberController extends AbstractController
         $this->view->set("gebruiker", $this->model->getGebruiker());
     }
 
-    protected function inschrijvenAction() {
+    protected function viewlessenAction() {
         $this->view->set("gebruiker", $this->model->getGebruiker());
         $this->view->set("lessons", $this->model->getAllLessons());
-        $this->view->set("distinctlessons", $this->model->getAllLessons(true));
+        $this->view->set("schedule", $this->model->getSchedule());
     }
     
     protected function inschrijvingenoverzichtAction() {
@@ -79,5 +79,28 @@ class MemberController extends AbstractController
         }
 
         $this->forward('inschrijvingenoverzicht');
+    }
+
+    protected function viewlesAction() {
+        $this->view->set('lessonsbyday', $this->model->getAllLessons(null, ["date" => $_GET['date']], $this->model->getGebruiker()->getId()));
+        $this->forward('viewlessen');
+    }
+
+    protected function inschrijvenAction() {
+        switch ($this->model->inschrijven($_GET['id'])) {
+            case REQUEST_SUCCESS:
+                $this->view->set("msg", "U heeft voor de les ingeschreven.");
+                break;
+            case REQUEST_FAILURE_DATA_INVALID:
+                $this->view->set("msg", "De request naar de server is niet voldaan");
+                break;
+            case REQUEST_NOTHING_CHANGED:
+                $this->view->set("msg", "Er niks te inschrijven");
+                break;
+            case PARAM_URL_INCOMPLETE:
+                $this->view->set('msg', 'Incomplete URL Parameters');
+                break;
+        }
+        $this->forward('viewlessen');
     }
 }

@@ -29,7 +29,7 @@
                         <!-- Navigation for a Member -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'member'): ?>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"; ?>>Home</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=inschrijven"; ?>>Inschrijven op les</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=viewlessen"; ?>>Inschrijven op les</a></li>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=inschrijvingenoverzicht"; ?>>Overzicht inschrijvingen</a></li>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=gegevenswijzigen&id=" . $gebruiker->getId(); ?>>Gegevens Wijzigen</a></li>
                         <?php endif; ?>
