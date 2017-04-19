@@ -13,6 +13,7 @@ class Lesson extends Entiteit
     protected $max_persons;
     protected $instructor_id;
     protected $training_id;
+    protected $db;
 
     public function __construct() {
         $this->id = filter_var($this->id, FILTER_VALIDATE_INT);

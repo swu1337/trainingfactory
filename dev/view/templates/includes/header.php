@@ -29,8 +29,8 @@
                         <!-- Navigation for a Member -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'member'): ?>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"; ?>>Home</a></li>
-                            <li><a href="?control=member&action=inschrijven">Inschrijven op les</a></li>
-                            <li><a href="?control=member&action=inschrijvingenoverzicht">Overzicht inschrijvingen</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=viewlessen"; ?>>Inschrijven op les</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=inschrijvingenoverzicht"; ?>>Overzicht inschrijvingen</a></li>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=gegevenswijzigen&id=" . $gebruiker->getId(); ?>>Gegevens Wijzigen</a></li>
                         <?php endif; ?>
 
@@ -40,6 +40,7 @@
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=plannen"; ?>>Plannen Lessen</a></li>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=lessen"; ?>>Lessen Beheer</a></li>
                         <?php endif; ?>
+
                         <!-- Navigation for a Admin -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'admin'): ?>
                             <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"; ?>>Home</a></li>
