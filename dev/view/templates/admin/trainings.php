@@ -1,5 +1,5 @@
-<?php include VIEW_PATH . 'includes/header.php';?>
-<?php include VIEW_PATH . 'includes/intro-image.php';?>
+<?php include VIEW_PATH . 'includes/header.php'; ?>
+<?php include VIEW_PATH . 'includes/intro-image.php'; ?>
 <?= isset($msg) ? $msg : ''; ?>
     <div class="container-fluid">
         <h2>Overzicht Trainingen</h2>
@@ -32,4 +32,4 @@
             </tbody>
         </table>
     </div>
-<?php include VIEW_PATH . 'includes/footer.php';?>
+<?php include VIEW_PATH . 'includes/footer.php'; ?>

@@ -35,8 +35,8 @@ class BezoekerController extends AbstractController
     }
     
     protected function aanbodAction() {
-        $soortTrainingen=$this->model->getSoortTrainingen();
-        $this->view->set("soortTrainingen",$soortTrainingen);
+        $soortTrainingen = $this->model->getSoortTrainingen();
+        $this->view->set("soortTrainingen", $soortTrainingen);
     }
     
     protected function gedragsregelsAction() {
@@ -46,20 +46,19 @@ class BezoekerController extends AbstractController
         if($this->model->isPostLeeg()) {
             $this->view->set("msg", "Vul uw gegevens in");
         } else {
-            $result = $this->model->registreren();
-            switch($result) {
+            switch($this->model->registreren()) {
                 case REQUEST_SUCCESS:
-                     $this->view->set("msg", "U bent successvol geregistreerd!");                     
-                     $this->forward("default");
-                     break;
+                    $this->view->set("msg", "U bent successvol geregistreerd!");
+                    $this->forward("default");
+                    break;
                 case REQUEST_FAILURE_DATA_INVALID:
-                     $this->view->set('form_data',$_POST);
-                     $this->view->set("msg", "emailadres niet correct of gebruikersnaam bestaat al"); 
-                     break;
+                    $this->view->set("formdata", $this->model->getFormData());
+                    $this->view->set("msg", "Emailadres niet correct, Geboortedatum is niet in de juiste format of gebruikersnaam bestaat al");
+                    break;
                 case REQUEST_FAILURE_DATA_INCOMPLETE:
-                     $this->view->set('form_data',$_POST);
-                     $this->view->set("msg", "Niet alle gegevens ingevuld");
-                     break;
+                    $this->view->set("formdata", $this->model->getFormData());
+                    $this->view->set("msg", "Niet alle gegevens ingevuld");
+                    break;
             }
         }    
     }

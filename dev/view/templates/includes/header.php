@@ -28,24 +28,24 @@
 
                         <!-- Navigation for a Member -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'member'): ?>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"; ?>>Home</a></li>
                             <li><a href="?control=member&action=inschrijven">Inschrijven op les</a></li>
                             <li><a href="?control=member&action=inschrijvingenoverzicht">Overzicht inschrijvingen</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=gegevenswijzigen&id=" . $gebruiker->getId() ?>>Gegevens Wijzigen</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=gegevenswijzigen&id=" . $gebruiker->getId(); ?>>Gegevens Wijzigen</a></li>
                         <?php endif; ?>
 
                         <!-- Navigation for a Instructor -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'instructor'): ?>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
-                            <li><a href="?control=instructor&action=plannen">Plannen Lessen</a></li>
-                            <li><a href="#">Lessen Beheer</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"; ?>>Home</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=plannen"; ?>>Plannen Lessen</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=lessen"; ?>>Lessen Beheer</a></li>
                         <?php endif; ?>
                         <!-- Navigation for a Admin -->
                         <?php if(isset($gebruiker) && $gebruiker->getRole() === 'admin'): ?>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"?>>Home</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=instructors"?>>Instructeurs</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=members"?>>Leden</a></li>
-                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=trainings"?>>Trainingen</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=default"; ?>>Home</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=instructors"; ?>>Instructeurs</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=members"; ?>>Leden</a></li>
+                            <li><a href=<?= "?control=" . $gebruiker->getRole() . "&action=trainings"; ?>>Trainingen</a></li>
                         <?php endif; ?>
 
                         <!-- Default Navigation -->

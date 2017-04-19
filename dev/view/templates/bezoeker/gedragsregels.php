@@ -1,6 +1,6 @@
-<?php include VIEW_PATH . 'includes/header.php';?>
+<?php include VIEW_PATH . 'includes/header.php'; ?>
 <div class="content-holder">
-    <?php include VIEW_PATH . 'includes/intro-image.php';?>
+    <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
     <div class="registration-holder">
         <h2>Gedragsregels</h2>
 <p>Mensen die naar een sportschool komen, doen dit voor een goede en ontspannen training. Ze willen deze tijd dan ook zo aangenaam mogelijk kunnen besteden. Ook mensen die naar een sportschool komen hebben geen zeeën van tijd en willen hun tijd goed kunnen benutten. Daarom is er ook zoiets als een Gym Etiquette, waarin een ongeschreven lijst van gedragsregels het verblijf op de sportschool zo aangenaam mogelijk moet maken.</p>
@@ -18,4 +18,4 @@ En een laatste regel die voor veel dames geldt, maar ook zeer zeker voor de here
 
     </div>
 </div>
-<?php include VIEW_PATH . 'includes/footer.php';?>
+<?php include VIEW_PATH . 'includes/footer.php'; ?>

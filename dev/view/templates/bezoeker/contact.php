@@ -1,6 +1,6 @@
-<?php include VIEW_PATH . 'includes/header.php';?>
+<?php include VIEW_PATH . 'includes/header.php'; ?>
 <div class="content-holder">
-    <?php include VIEW_PATH . 'includes/intro-image.php';?>
+    <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
     <div class="registration-holder">
         <h2>Lokatie & contact</h2>
         <p>Training Centrum</p><br>
@@ -10,4 +10,4 @@
         <p>Email: TrainingCentrumDenHaag@gmail.com</p>
     </div>
 </div>
-<?php include VIEW_PATH . 'includes/footer.php';?>
+<?php include VIEW_PATH . 'includes/footer.php'; ?>

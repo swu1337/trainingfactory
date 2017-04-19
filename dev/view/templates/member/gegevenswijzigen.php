@@ -1,4 +1,4 @@
-<?php include VIEW_PATH . 'includes/header.php';?>
+<?php include VIEW_PATH . 'includes/header.php'; ?>
 <div class="content-holder">
     <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
     <?= isset($msg) ? $msg : ''; ?> 
@@ -48,4 +48,4 @@
         </form>
     </div>
 </div>
-<?php include VIEW_PATH . 'includes/footer.php';?>
+<?php include VIEW_PATH . 'includes/footer.php'; ?>

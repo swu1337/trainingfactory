@@ -44,17 +44,18 @@ class MemberController extends AbstractController
         } else {
             switch($this->model->wijziggegevens()) {
                 case REQUEST_SUCCESS:
-                     $this->view->set("msg", "U heeft successvol uw gegevens gewijzigd!");
-                     $this->forward("default");
-                     break;
+                    $this->view->set("msg", "U heeft successvol uw gegevens gewijzigd!");
+                    $this->forward("default");
+                    break;
                 case REQUEST_FAILURE_DATA_INVALID:
-                     $this->view->set('form_data',$_POST);
-                     $this->view->set("msg", "Emailadres niet correct of gebruikersnaam bestaat al");
-                     break;
+                    $this->view->set("msg", "Emailadres niet correct of gebruikersnaam bestaat al");
+                    break;
                 case REQUEST_FAILURE_DATA_INCOMPLETE:
-                     $this->view->set('form_data',$_POST);
-                     $this->view->set("msg", "Niet alle gegevens zijn ingevuld");
-                     break;     
+                    $this->view->set("msg", "Niet alle gegevens zijn ingevuld");
+                    break;
+                case REQUEST_NOTHING_CHANGED:
+                    $this->view->set("msg", "Er niks te wijzigen");
+                    break;
             }
         }
     }
