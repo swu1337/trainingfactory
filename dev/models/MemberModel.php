@@ -23,10 +23,31 @@ class MemberModel extends AbstractModel
         $sd = filter_input(INPUT_POST, 'stad');
 
         if(empty($ww)) {
-            $sql = "UPDATE `persons`SET firstname = :voornaam, preprovision = :tussenvoegsel, lastname = :achternaam, dateofbirth = :geboortedatum, email_address = :email, gender = :geslacht, street = :straat, postal_code = :postcode, place = :stad WHERE `id` = :id";
+            $sql = "UPDATE `persons`
+                    SET firstname = :voornaam,
+                        preprovision = :tussenvoegsel,
+                        lastname = :achternaam,
+                        dateofbirth = :geboortedatum,
+                        email_address = :email,
+                        gender = :geslacht,
+                        street = :straat,
+                        postal_code = :postcode,
+                        place = :stad
+                        WHERE `id` = :id";
             $stmnt = $this->db->prepare($sql);
         } else {
-            $sql = "UPDATE `persons`SET firstname = :voornaam, preprovision = :tussenvoegsel, lastname = :achternaam, dateofbirth = :geboortedatum, email_address = :email, gender = :geslacht, street = :straat, postal_code = :postcode, place = :stad, password = :wachtwoord WHERE `id` = :id";
+            $sql = "UPDATE `persons` 
+                    SET firstname = :voornaam,
+                    preprovision = :tussenvoegsel,
+                    lastname = :achternaam,
+                    dateofbirth = :geboortedatum,
+                    email_address = :email,
+                    gender = :geslacht,
+                    street = :straat,
+                    postal_code = :postcode,
+                    place = :stad,
+                    password = :wachtwoord
+                    WHERE `id` = :id";
             $stmnt = $this->db->prepare($sql);
             $stmnt->bindParam(':wachtwoord', $ww);
         }
@@ -53,7 +74,7 @@ class MemberModel extends AbstractModel
             return REQUEST_SUCCESS;
         }
 
-        return REQUEST_FAILURE_DATA_INVALID; 
+        return REQUEST_NOTHING_CHANGED;
     }
     
     private function updateGebruiker() {

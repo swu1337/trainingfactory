@@ -60,7 +60,6 @@ class InstructorModel extends AbstractModel
                 LEFT JOIN persons ON registrations.member_id = persons.id 
                 WHERE registrations.lesson_id = :id";
 
-
         if(filter_var($id, FILTER_VALIDATE_INT)) {
             $stmnt = $this->db->prepare($sql);
             $stmnt->bindParam(':id', $id);
@@ -77,9 +76,9 @@ class InstructorModel extends AbstractModel
 
     }
 
-    public function getPersons($ar) {
-        $prop = key($ar);
-        $value = $ar[$prop];
+    public function getPersons($array) {
+        $prop = key($array);
+        $value = $array[$prop];
 
         $sql = "SELECT * FROM persons WHERE $prop = :value";
         $stmnt = $this->db->prepare($sql);
@@ -150,7 +149,7 @@ class InstructorModel extends AbstractModel
         $tijd = strtotime($tijd);
         $datum = strtotime($datum);
 
-        if(in_array(false, [$tijd, $datum, $aantal, $sport, $instructeur], true)) {
+        if(in_array(false, [$tijd, $datum, $aantal, $instructeur, $sport], true)) {
             return REQUEST_FAILURE_DATA_INVALID;
         }
 

@@ -28,16 +28,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="sport" class="col-sm-3 control-label">Instructeur:</label>
-            <div class="col-sm-9">
-                <select class="form-control" required name="instructeur">
-                    <?php foreach ($trainingen as $training): ?>
-                        <option value="<?= $training->getId(); ?>" <?= isset($f_data['sport']) ? $f_data['sport'] == $training->getId() ? 'selected' : '' : ''; ?>><?= $training->getDescription() ; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
             <label for="lokaal" class="col-sm-3 control-label">Lokaal:</label>
             <div class="col-sm-9">
                 <input type="text" required name="lokaal" class="form-control" id="lokaal" placeholder="Lokaal" value="<?= isset($f_data['lokaal']) ? $f_data['lokaal'] : ''; ?>">
