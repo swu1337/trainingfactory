@@ -24,7 +24,7 @@
             <input type="text" required class="registration-input" name="gebruikersnaam" value="<?= isset($formdata['gebruikersnaam']) ? $formdata['gebruikersnaam'] : ''; ?>" /><br>
 
             <label>Wachtwoord</label><br>
-            <input type="text" class="registration-input" name="wachtwoord" type="password" /><br>
+            <input type="password" class="registration-input" name="wachtwoord" type="password" /><br>
 
             <p>Het wachtwoord is nodig om in te loggen, moet minstens 6 tekens bevatten.</p>
         </div>
@@ -45,7 +45,7 @@
             <input type="text" required class="registration-input" name="stad" value="<?= isset($formdata['stad']) ? $formdata['stad'] : ''; ?>" /><br>
 
             <label>Email *</label><br>
-            <input type="text" required class="registration-input" name="email" value="<?= isset($formdata['email']) ? $formdata['email'] : ''; ?>"/><br><br>
+            <input type="email" required class="registration-input" name="email" value="<?= isset($formdata['email']) ? $formdata['email'] : ''; ?>"/><br><br>
             <button type="submit">Registreer</button>
         </div>
         <div class="clearfix"></div>
