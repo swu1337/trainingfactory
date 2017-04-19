@@ -41,10 +41,10 @@
             <label>Postcode *</label><br>
             <input type="text" required class="registration-input" name="postcode" value="<?= isset($formdata['postcode']) ? $formdata['postcode'] : ''; ?>" /><br>
 
-            <label>Stad</label><br>
+            <label>Stad *</label><br>
             <input type="text" required class="registration-input" name="stad" value="<?= isset($formdata['stad']) ? $formdata['stad'] : ''; ?>" /><br>
 
-            <label>Email</label><br>
+            <label>Email *</label><br>
             <input type="text" required class="registration-input" name="email" value="<?= isset($formdata['email']) ? $formdata['email'] : ''; ?>"/><br><br>
             <button type="submit">Registreer</button>
         </div>

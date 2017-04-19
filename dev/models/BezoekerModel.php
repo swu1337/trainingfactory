@@ -52,7 +52,7 @@ class BezoekerModel extends AbstractModel
         $pc = filter_input(INPUT_POST, 'postcode');
         $sd = filter_input(INPUT_POST, 'stad');
          
-        if(in_array(NULL, [$gn, $vn, $an, $gd, $gl, $st, $pc])) {
+        if(in_array(NULL, [$gn, $vn, $an, $email, $gd, $gl, $st, $pc, $sd])) {
             return REQUEST_FAILURE_DATA_INCOMPLETE;
         }
 
