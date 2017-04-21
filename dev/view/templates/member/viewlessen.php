@@ -1,6 +1,6 @@
 <?php include VIEW_PATH . 'includes/header.php'; ?>
 <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
-<?= isset($msg) ? $msg : ''; ?>
+<?php include VIEW_PATH . 'includes/message.php'; ?>
     <div class="container-fluid">
         <h2>Inschrijven op les</h2>
         <div class="row">

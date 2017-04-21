@@ -1,7 +1,7 @@
 <?php include VIEW_PATH . 'includes/header.php'; ?>
 <div class="content-holder">
     <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
-    <?= isset($msg) ? $msg : ''; ?> 
+    <?php include VIEW_PATH . 'includes/message.php'; ?>
     <div class="registration-holder">
         <h2>Gegevens wijzigen</h2>
         <p>Wijzig hieronder uw gegevens.</p>

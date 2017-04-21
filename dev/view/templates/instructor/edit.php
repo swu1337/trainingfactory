@@ -1,6 +1,6 @@
 <?php include VIEW_PATH . 'includes/header.php'; ?>
 <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
-<?= isset($msg) ? $msg : ''; ?>
+<?php include VIEW_PATH . 'includes/message.php'; ?>
     <div class="plannen-holder">
         <h2>Wijzigen van lessen</h2>
         <form method="post" class="form-horizontal">

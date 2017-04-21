@@ -1,6 +1,6 @@
 <?php include VIEW_PATH . 'includes/header.php'; ?>
 <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
-<?= isset($msg) ? $msg : ''; ?>
+<?php include VIEW_PATH . 'includes/message.php'; ?>
     <div class="container-fluid">
         <h2>Overzicht Trainingen</h2>
         <table class="table table-striped">

@@ -29,7 +29,7 @@ class MemberController extends AbstractController
                     $this->view->set('registrations', null);
                     break;
                 case PARAM_URL_INVALID:
-                    $this->view->set('msg', 'Invalid URL Parameters');
+                    $this->view->set('msg', ["danger" => 'Invalid URL Parameters']);
                     break;
             }
         } else {
@@ -41,21 +41,21 @@ class MemberController extends AbstractController
         $this->view->set("gebruiker", $this->model->getGebruiker());
 
         if($this->model->isPostLeeg()) {
-            $this->view->set("msg", "Vul uw gegevens in");
+            $this->view->set("msg", ["info" => "Vul uw gegevens in"]);
         } else {
             switch($this->model->wijziggegevens()) {
                 case REQUEST_SUCCESS:
-                    $this->view->set("msg", "U heeft successvol uw gegevens gewijzigd!");
+                    $this->view->set("msg", ["success" => "U heeft successvol uw gegevens gewijzigd!"]);
                     $this->forward("default");
                     break;
                 case REQUEST_FAILURE_DATA_INVALID:
-                    $this->view->set("msg", "Emailadres niet correct of gebruikersnaam bestaat al");
+                    $this->view->set("msg", ["warning" => "Emailadres niet correct of gebruikersnaam bestaat al"]);
                     break;
                 case REQUEST_FAILURE_DATA_INCOMPLETE:
-                    $this->view->set("msg", "Niet alle gegevens zijn ingevuld");
+                    $this->view->set("msg", ["warning" => "Niet alle gegevens zijn ingevuld"]);
                     break;
                 case REQUEST_NOTHING_CHANGED:
-                    $this->view->set("msg", "Er niks te wijzigen");
+                    $this->view->set("msg", ["warning" => "Er niks te wijzigen"]);
                     break;
             }
         }
@@ -64,16 +64,16 @@ class MemberController extends AbstractController
     protected function uitschrijvenAction() {
         switch ($this->model->lesUitschrijven($_GET['id'])) {
             case REQUEST_SUCCESS:
-                $this->view->set("msg", "U heeft voor de les uitgeschreven.");
+                $this->view->set("msg", ["success" => "U heeft voor de les uitgeschreven."]);
                 break;
             case REQUEST_FAILURE_DATA_INVALID:
-                $this->view->set("msg", "De request naar de server is niet voldaan");
+                $this->view->set("msg", ["danger" => "De request naar de server is niet voldaan"]);
                 break;
             case REQUEST_NOTHING_CHANGED:
-                $this->view->set("msg", "Er niks te uitschrijven");
+                $this->view->set("msg", ["warning" => "Er niks te uitschrijven"]);
                 break;
             case PARAM_URL_INCOMPLETE:
-                $this->view->set('msg', 'Incomplete URL Parameters');
+                $this->view->set('msg', ["danger" => 'Incomplete URL Parameters']);
                 break;
         }
 
@@ -88,16 +88,16 @@ class MemberController extends AbstractController
     protected function inschrijvenAction() {
         switch ($this->model->inschrijven($_GET['id'])) {
             case REQUEST_SUCCESS:
-                $this->view->set("msg", "U heeft voor de les ingeschreven.");
+                $this->view->set("msg", ["success" => "U heeft voor de les ingeschreven."]);
                 break;
             case REQUEST_FAILURE_DATA_INVALID:
-                $this->view->set("msg", "De request naar de server is niet voldaan");
+                $this->view->set("msg", ["danger" => "De request naar de server is niet voldaan"]);
                 break;
             case REQUEST_NOTHING_CHANGED:
-                $this->view->set("msg", "Er niks te inschrijven");
+                $this->view->set("msg", ["warning" => "Er niks te inschrijven"]);
                 break;
             case PARAM_URL_INCOMPLETE:
-                $this->view->set('msg', 'Incomplete URL Parameters');
+                $this->view->set('msg', ["danger" => 'Incomplete URL Parameters']);
                 break;
         }
         $this->forward('viewlessen');
