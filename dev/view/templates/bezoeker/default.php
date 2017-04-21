@@ -2,7 +2,7 @@
 <div class="content-holder">
     <div class="content-holder">
         <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
-        <?= isset($msg) ? $msg : ''; ?>
+        <?php include VIEW_PATH . 'includes/message.php'; ?>
     </div>
     <div class="text-holder">
         <h2>Welkom bij Training Centrum Den Haag</h2>

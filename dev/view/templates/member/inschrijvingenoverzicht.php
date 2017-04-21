@@ -1,7 +1,7 @@
 <?php include VIEW_PATH . 'includes/header.php'; ?>
 <div class="content-holder">
     <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
-    <?= isset($msg) ? $msg : ''; ?>
+    <?php include VIEW_PATH . 'includes/message.php'; ?>
     <div class="text-holder">
         <h2>Overzicht inschrijvingen</h2>
         <div class="table-responsive">

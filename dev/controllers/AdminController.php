@@ -20,10 +20,10 @@ class AdminController extends AbstractController
         if(is_int($request)) {
             switch($request) {
                 case PARAM_URL_INCOMPLETE:
-                    $this->view->set('msg', 'Invalid URL Parameters');
+                    $this->view->set('msg', ["danger" => 'Invalid URL Parameters']);
                     break;
                 case PARAM_URL_INVALID:
-                    $this->view->set('msg', 'Incomplete URL Parameters');
+                    $this->view->set('msg', ["danger" => 'Incomplete URL Parameters']);
                     break;
             }
         } else {
@@ -38,10 +38,10 @@ class AdminController extends AbstractController
         if(is_int($request)) {
             switch($request) {
                 case PARAM_URL_INCOMPLETE:
-                    $this->view->set('msg', 'Incomplete URL Parameters');
+                    $this->view->set('msg', ["danger" => 'Incomplete URL Parameters']);
                     break;
                 case PARAM_URL_INVALID:
-                    $this->view->set('msg', 'Invalid URL Parameters');
+                    $this->view->set('msg', ["danger" => 'Invalid URL Parameters']);
                     break;
             }
         } else {
@@ -56,10 +56,10 @@ class AdminController extends AbstractController
         if(is_int($request)) {
             switch($request) {
                 case PARAM_URL_INCOMPLETE:
-                    $this->view->set('msg', 'Invalid URL Parameters');
+                    $this->view->set('msg', ["danger" => 'Invalid URL Parameters']);
                     break;
                 case PARAM_URL_INVALID:
-                    $this->view->set('msg', 'Incomplete URL Parameters');
+                    $this->view->set('msg', ["danger" => 'Incomplete URL Parameters']);
                     break;
             }
         } else {
@@ -92,10 +92,10 @@ class AdminController extends AbstractController
             } else {
                 switch($value) {
                     case PARAM_URL_INCOMPLETE:
-                        $this->view->set('msg', 'Incomplete URL Parameters');
+                        $this->view->set('msg', ["danger" => 'Incomplete URL Parameters']);
                         break;
                     case PARAM_URL_INVALID:
-                        $this->view->set('msg', 'Invalid URL Parameters');
+                        $this->view->set('msg', ["danger" => 'Invalid URL Parameters']);
                         break;
                     case REQUEST_NO_DATA:
                         $this->view->set($request, null);
@@ -120,26 +120,26 @@ class AdminController extends AbstractController
 
             switch ($request) {
                 case REQUEST_SUCCESS:
-                    $this->view->set("msg", "De $prop is gewijzigd");
+                    $this->view->set("msg", ["success" => "De $prop is gewijzigd"]);
                     $this->forward($prop . 's');
                     break;
                 case REQUEST_FAILURE_DATA_INVALID:
-                    $this->view->set("msg", "Fout invoer");
+                    $this->view->set("msg", ["warning" => "Fout invoer"]);
                     break;
                 case REQUEST_FAILURE_DATA_INCOMPLETE:
-                    $this->view->set("msg", "Niet alle gegevens zijn ingevuld!");
+                    $this->view->set("msg", ["warning" => "Niet alle gegevens zijn ingevuld!"]);
                     break;
                 case REQUEST_NOTHING_CHANGED:
-                    $this->view->set("msg", "Er niks te wijzigen");
+                    $this->view->set("msg", ["warning" => "Er niks te wijzigen"]);
                     break;
                 case PARAM_URL_INCOMPLETE:
-                    $this->view->set('msg', 'Incomplete URL Parameters');
+                    $this->view->set('msg', ["danger" => 'Incomplete URL Parameters']);
                     break;
                 case PARAM_URL_INVALID:
-                    $this->view->set('msg', 'Invalid URL Parameters');
+                    $this->view->set('msg', ["danger" => 'Invalid URL Parameters']);
                     break;
                 case DB_NOT_ACCEPTABLE_DATA:
-                    $this->view->set('msg', 'Email of Gebruikersnaam is al in gebruik');
+                    $this->view->set('msg', ["warning" => 'Email of Gebruikersnaam is al in gebruik']);
             }
         }
     }
@@ -162,19 +162,19 @@ class AdminController extends AbstractController
 
         switch ($request) {
             case REQUEST_SUCCESS:
-                $this->view->set("msg", "De geselecteerde $prop is verwijderd!");
+                $this->view->set("msg", ["success" => "De geselecteerde $prop is verwijderd!"]);
                 break;
             case REQUEST_FAILURE_DATA_INVALID:
-                $this->view->set("msg", "De request naar de server is niet voldaan");
+                $this->view->set("msg", ["danger" => "De request naar de server is niet voldaan"]);
                 break;
             case REQUEST_FAILURE_DATA_INCOMPLETE:
-                $this->view->set("msg", "De geselecteerde $prop bestaat niet");
+                $this->view->set("msg", ["warning" => "De geselecteerde $prop bestaat niet"]);
                 break;
             case PARAM_URL_INVALID:
-                $this->view->set('msg', 'Invalid URL Parameters');
+                $this->view->set('msg', ["danger" => 'Invalid URL Parameters']);
                 break;
             case PARAM_URL_INCOMPLETE:
-                $this->view->set('msg', 'Incomplete URL Parameters');
+                $this->view->set('msg', ["danger" => 'Incomplete URL Parameters']);
                 break;
         }
 

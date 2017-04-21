@@ -1,6 +1,6 @@
 <?php include VIEW_PATH . 'includes/header.php'; ?>
 <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
-<?= isset($msg) ? $msg : ''; ?>
+<?php include VIEW_PATH . 'includes/message.php'; ?>
 <div class="plannen-holder">
     <h2>Plannen van lessen</h2>
     <p>De les die je wilt verzorgen moet je met onderstaand formulier zelf plannen.Lokaal wordt alleen getoond als er ruimte is.</p>

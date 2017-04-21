@@ -20,20 +20,20 @@ class InstructorController extends AbstractController
         if(!$this->model->isPostLeeg()) {
             switch ($this->model->lesMaken()) {
                 case REQUEST_SUCCESS:
-                    $this->view->set("msg", "Les is toegevoegd");
+                    $this->view->set("msg", ["success" => "Les is toegevoegd"]);
                     $_POST = [];
                     $this->forward("plannen");
                     break;
                 case REQUEST_FAILURE_DATA_INVALID:
-                    $this->view->set("msg", "Fout invoer");
+                    $this->view->set("msg", ["warning" => "Fout invoer"]);
                     $this->view->set("f_data", $this->model->getFormData());
                     break;
                 case REQUEST_FAILURE_DATA_INCOMPLETE:
-                    $this->view->set("msg", "Niet alles is ingevuld");
+                    $this->view->set("msg", ["warning" => "Niet alles is ingevuld"]);
                     $this->view->set("f_data", $this->model->getFormData());
                     break;
                 case REQUEST_NOTHING_CHANGED:
-                    $this->view->set("msg", "Er geen les toegevoegd");
+                    $this->view->set("msg", ["warning" => "Er geen les toegevoegd"]);
                     break;
             }
         }
@@ -52,7 +52,7 @@ class InstructorController extends AbstractController
         if(is_int($request)) {
             switch ($request) {
                 case PARAM_URL_INVALID:
-                    $this->view->set("msg", "Invalid URL Parameter");
+                    $this->view->set("msg", ["danger" => "Invalid URL Parameter"]);
                     break;
             }
         } else {
@@ -69,7 +69,7 @@ class InstructorController extends AbstractController
         if(is_int($request)) {
             switch ($request) {
                 case PARAM_URL_INVALID:
-                    $this->view->set("msg", "Invalid URL Parameter");
+                    $this->view->set("msg", ["danger" => "Invalid URL Parameter"]);
                     $this->forward("lessen");
                     break;
             }
@@ -80,20 +80,20 @@ class InstructorController extends AbstractController
         if(!$this->model->isPostLeeg()) {
             switch ($this->model->update($_GET['id'])) {
                 case REQUEST_SUCCESS:
-                    $this->view->set("msg", "Les is gewijzigd");
+                    $this->view->set("msg", ["success" => "Les is gewijzigd"]);
                     $this->forward("lessen");
                     break;
                 case REQUEST_FAILURE_DATA_INVALID:
-                    $this->view->set("msg", "Fout invoer");
+                    $this->view->set("msg", ["warning" => "Fout invoer"]);
                     break;
                 case REQUEST_FAILURE_DATA_INCOMPLETE:
-                    $this->view->set("msg", "Niet alles is ingevuld");
+                    $this->view->set("msg", ["warning" => "Niet alles is ingevuld"]);
                     break;
                 case REQUEST_NOTHING_CHANGED:
-                    $this->view->set("msg", "Er niks te wijzigen");
+                    $this->view->set("msg", ["warning" => "Er niks te wijzigen"]);
                     break;
                 case PARAM_URL_INVALID:
-                    $this->view->set("msg", "Invalid URL Parameter");
+                    $this->view->set("msg", ["danger" => "Invalid URL Parameter"]);
                     break;
             }
         }
