@@ -236,7 +236,7 @@ class MemberModel extends AbstractModel
         $lessons = $this->getAllLessons(true);
         
         if($lessons) {
-            $dates = call_user_func_array('array_merge', $this->getAllLessons(true));
+            $dates = call_user_func_array('array_merge', $lessons);
             
             if(strtotime($dates[0]) !== strtotime(date('d-m-Y'))) {
                 array_unshift($dates, 'Vandaag');
