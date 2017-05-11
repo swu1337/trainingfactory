@@ -89,23 +89,22 @@ class MemberModel extends AbstractModel
 
     public function getRegistrations($id) {
         $sql = "SELECT lessons.id as \"lesson_id\",
-                       COUNT(registrations.lesson_id) AS \"registered\",
-                       registrations.payment,
-                       lessons.time, 
-                       DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\",
-                       lessons.location,
-                       lessons.max_persons, 
-                       lessons.instructor_id, 
-                       trainings.description, 
-                       trainings.duration, 
-                       trainings.extra_costs, 
-                       registrations.member_id 
-                 FROM lessons 
-                 JOIN trainings ON lessons.training_id = trainings.id 
-                 LEFT JOIN registrations ON lessons.id = registrations.lesson_id 
-                 WHERE lessons.id IN (SELECT registrations.lesson_id from registrations where registrations.member_id = :id) 
-                 GROUP BY lessons.id
-                 ORDER BY lessons.id";
+                    (SELECT COUNT(registrations.lesson_id) FROM registrations WHERE registrations.lesson_id = lessons.id) AS \"registered\",
+                    registrations.payment,
+                    lessons.time, 
+                    DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\",
+                    lessons.location,
+                    lessons.max_persons, 
+                    lessons.instructor_id, 
+                    trainings.description, 
+                    trainings.duration, 
+                    trainings.extra_costs, 
+                    registrations.member_id
+                FROM lessons 
+                JOIN trainings ON lessons.training_id = trainings.id 
+                LEFT JOIN registrations ON lessons.id = registrations.lesson_id 
+                WHERE lessons.id IN (SELECT registrations.lesson_id from registrations WHERE registrations.member_id = :id) 
+                ORDER BY lessons.id";
 
         $id = filter_var($id, FILTER_VALIDATE_INT);
 
@@ -152,7 +151,7 @@ class MemberModel extends AbstractModel
 
     public function getAllLessons($isDistinct = null, $array = [], $member_id = null) {
         if($isDistinct) {
-            $sql = "SELECT DISTINCT DATE_FORMAT(date, '%d-%m-%Y') as \"formatted_date\" FROM `lessons` WHERE date >= CURDATE() ORDER BY date";
+            $sql = "SELECT DISTINCT DATE_FORMAT(date, '%d-%m-%Y') as \"formatted_date\" FROM `lessons` WHERE date >= CURDATE() ORDER BY formatted_date";
             $stmnt = $this->db->prepare($sql);
             $stmnt->execute();
             return $stmnt->fetchALL(\PDO::FETCH_NUM);
@@ -163,7 +162,7 @@ class MemberModel extends AbstractModel
             $value = $array[$prop];
 
             $sql = "SELECT lessons.id as \"lesson_id\",
-                       lessons.max_persons - COUNT(registrations.lesson_id) AS \"remaining\",
+                       lessons.max_persons - (SELECT COUNT(registrations.lesson_id) FROM registrations WHERE registrations.lesson_id = lessons.id) AS \"remaining\",
                        registrations.payment,
                        lessons.time, 
                        DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\",
@@ -178,7 +177,6 @@ class MemberModel extends AbstractModel
                     JOIN trainings ON lessons.training_id = trainings.id 
                     LEFT JOIN registrations ON lessons.id = registrations.lesson_id 
                     WHERE `lessons`.`$prop` = :c_date AND `lessons`.`id` NOT IN (SELECT lesson_id FROM registrations WHERE member_id = :id)
-                    GROUP BY lessons.id
                     ORDER BY lessons.id";
 
             $sttvalue = $value;
@@ -202,7 +200,7 @@ class MemberModel extends AbstractModel
 
             if($value === 'Later') {
                 $sql = "SELECT lessons.id as \"lesson_id\",
-                       lessons.max_persons - COUNT(registrations.lesson_id) AS \"remaining\",
+                       lessons.max_persons - (SELECT COUNT(registrations.lesson_id) FROM registrations WHERE registrations.lesson_id = lessons.id) AS \"remaining\",
                        registrations.payment,
                        lessons.time, 
                        DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\",
@@ -217,7 +215,6 @@ class MemberModel extends AbstractModel
                     JOIN trainings ON lessons.training_id = trainings.id 
                     LEFT JOIN registrations ON lessons.id = registrations.lesson_id 
                     WHERE `lessons`.`$prop` > :c_date AND `lessons`.`id` NOT IN (SELECT lesson_id FROM registrations WHERE member_id = :id)
-                    GROUP BY lessons.id
                     ORDER BY lessons.id";
             }
 
@@ -236,17 +233,23 @@ class MemberModel extends AbstractModel
     }
 
     public function getSchedule() {
-        $dates = call_user_func_array('array_merge', $this->getAllLessons(true));
+        $lessons = $this->getAllLessons(true);
+        
+        if($lessons) {
+            $dates = call_user_func_array('array_merge', $this->getAllLessons(true));
+            
+            if(strtotime($dates[0]) !== strtotime(date('d-m-Y'))) {
+                array_unshift($dates, 'Vandaag');
+            } else {
+                $dates[0] = 'Vandaag';
+            }
 
-        if(strtotime($dates[0]) !== strtotime(date('d-m-Y'))) {
-            array_unshift($dates, 'Vandaag');
-        } else {
-            $dates[0] = 'Vandaag';
+            array_splice($dates, 14, count($dates), "Later");
+
+            return $dates;
         }
-
-        array_splice($dates, 14,count($dates), "Later");
-
-        return $dates;
+        
+        return NULL;
     }
 
     public function inschrijven($id) {

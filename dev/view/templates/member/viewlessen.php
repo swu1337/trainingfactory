@@ -6,13 +6,13 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-inline">
-                    <?php foreach($schedule as $s): ?>
+                    <?php if($schedule): foreach($schedule as $s): ?>
                         <li>
                             <a href=<?= "?control=" . $gebruiker->getRole() . "&action=viewles&date=$s"; ?>>
                                 <p class="lead"><?= strtotime($s) ? date('D d M', strtotime($s)) : $s; ?></p>
                             </a>
                         </li>
-                    <?php endforeach; ?>
+                    <?php endforeach; endif; ?>
                 </ul>
             </div>
         </div>
