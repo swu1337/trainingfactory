@@ -276,6 +276,7 @@ class MemberModel extends AbstractModel
         if($stmnt->rowCount() === 1) {
             return REQUEST_SUCCESS;
         }
+        
         REQUEST_NOTHING_CHANGED;
     }
 }
