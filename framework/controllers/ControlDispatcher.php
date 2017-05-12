@@ -17,7 +17,7 @@ class ControlDispatcher
             throw new \framework\error\FrameworkException("controller $klasseNaam bestaat niet!");
         }
 
-        if(!is_subclass_of($klasseNaam,'\\framework\\controllers\\AbstractController')) {
+        if(!is_subclass_of($klasseNaam, '\\framework\\controllers\\AbstractController')) {
             throw new \framework\error\FrameworkException("klas $klasseNaam implementeert overerft niet van framework AbstractController. dat is verplicht");
         }
 

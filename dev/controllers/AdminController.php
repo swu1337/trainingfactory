@@ -104,18 +104,10 @@ class AdminController extends AbstractController
         }
 
         if(!$this->model->isPostLeeg()) {
-            switch ($prop) {
-                case 'instructor':
-                    $request = $this->model->edit('instructor', $_GET['id']);
-                    break;
-                case 'member':
-                    $request = $this->model->edit('member', $_GET['id']);
-                    break;
-                case 'training':
-                    $request = $this->model->edit('training', $_GET['id']);
-                    break;
-                default:
-                    $request = PARAM_URL_INCOMPLETE;
+            if(in_array($prop, ['instructor', 'member', 'training'])) {
+                $request = $this->model->edit($prop, $_GET['id']);
+            } else {
+                $request = PARAM_URL_INCOMPLETE;
             }
 
             switch ($request) {
@@ -179,5 +171,54 @@ class AdminController extends AbstractController
         }
 
         $this->forward($prop . 's');
+    }
+    
+    protected function createAction() {
+        $this->view->set('gebruiker', $this->model->getGebruiker());
+        $prop = $_GET['prop'];
+
+        if(in_array($prop, ['instructor', 'member', 'training'])) {
+            $this->view->set('prop', $prop);
+            $this->view->set('form_data', $this->model->getFormData());
+        } else {
+            $this->view->set('msg', ['danger' => 'Invalid Parameter']);
+            $this->forward('default');
+        }
+        
+        if(!$this->model->isPostLeeg()) {
+            if(in_array($prop, ['instructor', 'member', 'training'])) {
+                $request = $this->model->create($prop);
+            } else {
+                $request = PARAM_URL_INCOMPLETE;
+            }
+            
+            switch($request) {
+                case REQUEST_SUCCESS:
+                    $this->view->set("msg", ["success" => "De $prop is Toegvoegd"]);
+                    $this->forward($prop . 's');
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("msg", ["warning" => "Fout invoer"]);
+                    break;
+                case REQUEST_FAILURE_DATA_INCOMPLETE:
+                    $this->view->set("msg", ["warning" => "Niet alle gegevens zijn ingevuld!"]);
+                    break;
+                case REQUEST_NOTHING_CHANGED:
+                    $this->view->set("msg", ["warning" => "Er niks te wijzigen"]);
+                    break;
+                case PARAM_URL_INCOMPLETE:
+                    $this->view->set('msg', ["danger" => 'Incomplete URL Parameters']);
+                    break;
+                case PARAM_URL_INVALID:
+                    $this->view->set('msg', ["danger" => 'Invalid URL Parameters']);
+                    break;
+                case DB_NOT_ACCEPTABLE_DATA:
+                    if($prop === 'training') {
+                        $this->view->set('msg', ["warning" => 'De description van de training is al in gebruik']);
+                    } else {                                       
+                        $this->view->set('msg', ["warning" => 'Email of Gebruikersnaam is al in gebruik']);
+                    }
+            }
+        }
     }
 }

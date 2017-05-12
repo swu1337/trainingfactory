@@ -20,7 +20,7 @@ abstract class AbstractController implements IController
             throw new ERROR\FrameworkException("klasse $modelClassName bestaat niet!!!");  
         }
 
-        if(!is_subclass_of($modelClassName,'\\framework\\models\\AbstractModel')) {
+        if(!is_subclass_of($modelClassName, '\\framework\\models\\AbstractModel')) {
             throw new ERROR\FrameworkException("klasse $modelClassName erft niet van framework AbstractModel");
         }
 
@@ -62,7 +62,7 @@ abstract class AbstractController implements IController
                 throw new ERROR\FrameworkException("klas $klasseNaam bestaat niet!!!");  
             }
 
-            if(!is_subclass_of($klasseNaam,'\\framework\\controllers\\AbstractController')) {
+            if(!is_subclass_of($klasseNaam, '\\framework\\controllers\\AbstractController')) {
                 throw new ERROR\FrameworkException("klas $klasseNaam erft niet van framework AbstractController");
             }
 

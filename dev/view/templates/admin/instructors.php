@@ -1,8 +1,11 @@
 <?php include VIEW_PATH . 'includes/header.php'; ?>
 <?php include VIEW_PATH . 'includes/intro-image.php'; ?>
 <?php include VIEW_PATH . 'includes/message.php'; ?>
-    <div class="container-fluid">
+    <div class="container-fluid">            
         <h2>Overzicht Instructeurs</h2>
+        <div class="row row-gutter">
+             <a class="btn btn-success" href=<?= "?control=" . $gebruiker->getRole() . "&action=create&prop=instructor"; ?>>Nieuw <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -35,5 +38,6 @@
             <?php endif; ?>
             </tbody>
         </table>
+    </div>
     </div>
 <?php include VIEW_PATH . 'includes/footer.php'; ?>
