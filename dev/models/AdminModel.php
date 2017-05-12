@@ -167,7 +167,7 @@ class AdminModel extends AbstractModel
                 $place = filter_input(INPUT_POST, 'place');
                 $email_address = filter_input(INPUT_POST, 'email_address', FILTER_VALIDATE_EMAIL);
 
-                $payments = filter_input(INPUT_POST, ' ', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+                $payments = filter_input(INPUT_POST, 'payments', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
                 if(in_array(null, [$dateofbirth, $loginname, $gender, $street, $postal_code, $place, $email_address])) {
                     return REQUEST_FAILURE_DATA_INCOMPLETE;
