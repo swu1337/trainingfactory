@@ -42,7 +42,11 @@ class AdminModel extends AbstractModel
                         $sql = "SELECT * FROM `trainings` WHERE id = :id LIMIT 1";
                         break;
                     case 'person':
-                        $sql = "SELECT *, DATE_FORMAT(`dateofbirth`, '%d-%m-%Y') AS \"dateofbirth\", DATE_FORMAT(`hiring_date`, '%d-%m-%Y') AS \"hiring_date\" FROM `persons` WHERE id = :id LIMIT 1";
+                        $sql = "SELECT *, 
+                                       DATE_FORMAT(`dateofbirth`, '%d-%m-%Y') AS \"dateofbirth\",
+                                       DATE_FORMAT(`hiring_date`, '%d-%m-%Y') AS \"hiring_date\"
+                                FROM `persons` 
+                                WHERE id = :id LIMIT 1";
                         break;
                     default:
                         return PARAM_URL_INVALID;
@@ -64,14 +68,25 @@ class AdminModel extends AbstractModel
     }
 
     public function getRegistrations($id) {
-        $sql = "SELECT lesson_id, payment, time, DATE_FORMAT(date, '%d-%m-%Y') AS \"date\", location, max_persons, instructor_id, description, duration, extra_costs
+        $sql = "SELECT lesson_id,
+                       payment, 
+                       time, 
+                       DATE_FORMAT(date, '%d-%m-%Y') AS \"date\",
+                       location,
+                       max_persons,
+                       instructor_id,
+                       description,
+                       duration,
+                       extra_costs
                 FROM registrations
                 JOIN lessons
                 ON registrations.lesson_id = lessons.id
                 JOIN trainings 
                 ON lessons.training_id = trainings.id
                 WHERE registrations.member_id = :id";
+        
         $id = filter_var($id, FILTER_VALIDATE_INT);
+        
         if($id) {
             $stmnt = $this->db->prepare($sql);
             $stmnt->bindParam(':id', $id);
@@ -237,7 +252,15 @@ class AdminModel extends AbstractModel
                 $hiring_date = filter_input(INPUT_POST, 'hiring_date');
                 $salary = filter_input(INPUT_POST, 'salary', FILTER_VALIDATE_FLOAT);
 
-                if(in_array(null, [$dateofbirth, $loginname, $gender, $street, $postal_code, $place, $email_address, $hiring_date, $salary])) {
+                if(in_array(null, [$dateofbirth,
+                                   $loginname,
+                                   $gender,
+                                   $street,
+                                   $postal_code,
+                                   $place,
+                                   $email_address, 
+                                   $hiring_date, 
+                                   $salary])) {
                     return REQUEST_FAILURE_DATA_INCOMPLETE;
                 }
 
@@ -350,7 +373,15 @@ class AdminModel extends AbstractModel
                     $hiring_date = date('Y-m-d', $hiring_date);
                 }
 
-                if(in_array(null, [$firstname, $lastname, $dateofbirth, $loginname, $gender, $street, $postal_code, $place, $email_address])) {
+                if(in_array(null, [$firstname,
+                                   $lastname,
+                                   $dateofbirth,
+                                   $loginname,
+                                   $gender,
+                                   $street,
+                                   $postal_code,
+                                   $place,
+                                   $email_address])) {
                     return REQUEST_FAILURE_DATA_INCOMPLETE;
                 }
                 
@@ -366,10 +397,58 @@ class AdminModel extends AbstractModel
                     $password = 'qwerty';
                 }
                 
-                $sql = "INSERT INTO persons(loginname, password, firstname, preprovision, lastname, dateofbirth, gender, email_address, street, postal_code, place) VALUES (:loginname, :password, :firstname, :preprovision, :lastname, :dateofbirth, :gender, :email_address, :street, :postal_code, :place)";
+                $sql = "INSERT INTO persons(loginname,
+                                            password,
+                                            firstname,
+                                            preprovision,
+                                            lastname, 
+                                            dateofbirth,
+                                            gender,
+                                            email_address,
+                                            street,
+                                            postal_code,
+                                            place)
+                        VALUES (:loginname,
+                                :password,
+                                :firstname,
+                                :preprovision,
+                                :lastname,
+                                :dateofbirth,
+                                :gender,
+                                :email_address,
+                                :street,
+                                :postal_code,
+                                :place)";
                 
                 if($prop === 'instructor') {
-                    $sql = "INSERT INTO persons(loginname, password, firstname, preprovision, lastname, dateofbirth, gender, email_address, hiring_date, salary, street, postal_code, place, role) VALUES (:loginname, :password, :firstname, :preprovision, :lastname, :dateofbirth, :gender, :email_address, :hiring_date, :salary, :street, :postal_code, :place, 'instructor')";
+                    $sql = "INSERT INTO persons(loginname,
+                                                password,
+                                                firstname,
+                                                preprovision,
+                                                lastname,
+                                                dateofbirth,
+                                                gender,
+                                                email_address,
+                                                hiring_date,
+                                                salary,
+                                                street,
+                                                postal_code,
+                                                place,
+                                                role) 
+                            VALUES (:loginname,
+                            :password,
+                            :firstname,
+                            :preprovision,
+                            :lastname,
+                            :dateofbirth,
+                            :gender,
+                            :email_address,
+                            :hiring_date,
+                            :salary,
+                            :street,
+                            :postal_code,
+                            :place,
+                            'instructor')";
                 }
                 
                 $stmnt = $this->db->prepare($sql);
