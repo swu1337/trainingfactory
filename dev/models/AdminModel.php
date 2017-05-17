@@ -69,7 +69,7 @@ class AdminModel extends AbstractModel
 
     public function getRegistrations($id) {
         $sql = "SELECT lesson_id,
-                       payment, 
+                       payment,     
                        time, 
                        DATE_FORMAT(date, '%d-%m-%Y') AS \"date\",
                        location,
@@ -436,19 +436,19 @@ class AdminModel extends AbstractModel
                                                 place,
                                                 role) 
                             VALUES (:loginname,
-                            :password,
-                            :firstname,
-                            :preprovision,
-                            :lastname,
-                            :dateofbirth,
-                            :gender,
-                            :email_address,
-                            :hiring_date,
-                            :salary,
-                            :street,
-                            :postal_code,
-                            :place,
-                            'instructor')";
+                                    :password,
+                                    :firstname,
+                                    :preprovision,
+                                    :lastname,
+                                    :dateofbirth,
+                                    :gender,
+                                    :email_address,
+                                    :hiring_date,
+                                    :salary,
+                                    :street,
+                                    :postal_code,
+                                    :place,
+                                    'instructor')";
                 }
                 
                 $stmnt = $this->db->prepare($sql);
@@ -485,9 +485,11 @@ class AdminModel extends AbstractModel
                 if(in_array(false, [$duration, $extra_costs], true)) {
                     return REQUEST_FAILURE_DATA_INVALID;
                 }
+                
                 $duration = date('H:i:s', $duration);
                 
-                $sql = "INSERT INTO trainings(description, duration, extra_costs) VALUES (:description, :duration, :extra_costs)";
+                $sql = "INSERT INTO trainings(description, duration, extra_costs)
+                        VALUES (:description, :duration, :extra_costs)";
                 $stmnt = $this->db->prepare($sql);
                 $stmnt->bindParam(':description', $description);
                 $stmnt->bindParam(':duration', $duration);
