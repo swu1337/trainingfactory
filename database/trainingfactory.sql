@@ -48,7 +48,8 @@ CREATE TABLE `trainings` (
   `description` varchar(255) NOT NULL,
   `duration` time NOT NULL,
   `extra_costs` decimal(7,2) DEFAULT NULL,
-  CONSTRAINT `trainings_id_pk` PRIMARY KEY (`id`)
+  CONSTRAINT `trainings_id_pk` PRIMARY KEY (`id`),
+  CONSTRAINT `trainings_description_uk` UNIQUE(`description`)
 ) ENGINE=InnoDB;
 
 -- --------------------------------------------------------

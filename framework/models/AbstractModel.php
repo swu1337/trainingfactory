@@ -16,7 +16,7 @@ abstract class AbstractModel
         if($this->control !== DEFAULT_ROLE) {
             $this->startSession();            
             
-        } else{
+        } else {
             /**
             * je kan van een andere controller komen middels forward, mogelijk geldt dan dat er een open sessie is. Sluit die nu af.
             * de default role heeft geen sessie!!

@@ -11,21 +11,20 @@ class InstructorModel extends AbstractModel
 
     public function getLessons($id = null) {
         $sql = "SELECT lessons.id as \"lesson_id\",
-                       COUNT(registrations.lesson_id) AS \"registered\",
-                       registrations.payment,
-                       lessons.time, 
-                       DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\",
-                       lessons.location, lessons.max_persons, 
-                       lessons.instructor_id, 
-                       trainings.description, 
-                       trainings.duration, 
-                       trainings.extra_costs, 
-                       registrations.member_id 
-                 FROM lessons 
-                 JOIN trainings ON lessons.training_id = trainings.id 
-                 LEFT JOIN registrations ON lessons.id = registrations.lesson_id
-                 GROUP BY lessons.id
-                 ORDER BY lessons.id";
+                    (SELECT COUNT(registrations.lesson_id) FROM registrations WHERE registrations.lesson_id = lessons.id) AS \"registered\",
+                    registrations.payment,
+                    lessons.time, 
+                    DATE_FORMAT(lessons.date, '%d-%m-%Y') AS \"date\",
+                    lessons.location, lessons.max_persons, 
+                    lessons.instructor_id, 
+                    trainings.description, 
+                    trainings.duration, 
+                    trainings.extra_costs, 
+                    registrations.member_id 
+                FROM lessons 
+                JOIN trainings ON lessons.training_id = trainings.id 
+                LEFT JOIN registrations ON lessons.id = registrations.lesson_id
+                ORDER BY lessons.id";
 
         if(isset($id)) {
             if(filter_var($id, FILTER_VALIDATE_INT)) {
@@ -189,6 +188,5 @@ class InstructorModel extends AbstractModel
         } else {
             return PARAM_URL_INVALID;
         }
-
     }
 }

@@ -6,13 +6,13 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-inline">
-                    <?php foreach($schedule as $s): ?>
+                    <?php if($schedule): foreach($schedule as $s): ?>
                         <li>
                             <a href=<?= "?control=" . $gebruiker->getRole() . "&action=viewles&date=$s"; ?>>
                                 <p class="lead"><?= strtotime($s) ? date('D d M', strtotime($s)) : $s; ?></p>
                             </a>
                         </li>
-                    <?php endforeach; ?>
+                    <?php endforeach; endif; ?>
                 </ul>
             </div>
         </div>
@@ -20,8 +20,12 @@
             <?php if(!empty($lessonsbyday)): ?>
                 <?php foreach($lessonsbyday as $lbd): ?>
                 <div class="col-md-12">
-                    <a href=<?= "?control=" . $gebruiker->getRole() . "&action=inschrijven&id=" . $lbd->getLesson_id(); ?>><h3><?= $lbd->description; ?></h3></a>
-                    <h4><?= $lbd->getTime(); ?></h4>
+                    <?php if($lbd->getRemaining() >= 1): ?>
+                        <h4><?= $lbd->getTime(); ?></h4>
+                        <a href=<?= "?control=" . $gebruiker->getRole() . "&action=inschrijven&id=" . $lbd->getLesson_id(); ?>><h3><?= $lbd->description; ?></h3></a>
+                    <?php else: ?>
+                        <h2 class="lead">No Lesson For You</h2>
+                    <?php endif; ?>
                 </div>
                 <?php endforeach; ?>
             <?php else: ?>
