@@ -27,7 +27,12 @@
                     <td><?= $r->getDescription(); ?></td>
                     <td><?= $r->getRegistered(); ?></td>
                     <td><?= !empty($r->getExtra_costs())? '&euro; ' . $r->getExtra_costs() : '-'; ?></td>
-                    <td><a href=<?= "?control=" . $gebruiker->getRole() . "&action=uitschrijven&id=" . $r->getLesson_id(); ?>><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></td>
+                    <td>
+                        <?php if(strtotime('today CET') <= strtotime($r->getDate())): ?>
+                            <a href=<?= "?control=" . $gebruiker->getRole() . "&action=uitschrijven&id=" . $r->getLesson_id(); ?>><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
+                        <?php else: ?>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php $z++; endforeach; ?>
             <?php else: ?>
