@@ -450,4 +450,7 @@ build/
 nbbuild/
 dist/
 
+### Bower ###
+bower_components/
+
 # End of https://www.gitignore.io/api/windows,netbeans,intellij,phpstorm,jetbrains,visualstudio

@@ -1,0 +1,22 @@
+{
+  "name": "trainingfactory",
+  "description": "School Project",
+  "main": "index.js",
+  "authors": [
+    "Steven Wu"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/swu1337/trainingfactory",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7"
+  }
+}
