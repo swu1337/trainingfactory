@@ -7,9 +7,11 @@ import bowerfiles from 'main-bower-files';
 import inject from 'gulp-inject';
 import uglify from 'gulp-uglify';
 import babel from 'gulp-babel';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
 
 const cssprop = {
-    src: 'css/styles.css',
+    src: 'css/**/*.css',
     dest: 'build/css',
     rename: 'styles.min.css'    
 }
@@ -24,7 +26,7 @@ const jsprop =  {
 const injectprop = {
     jssrc: 'dev/view/templates/includes/footer.php',
     jsdest: 'dev/view/templates/includes/',
-    jsinjectsrc: 'build/css/styles.min.js',
+    jsinjectsrc: 'build/js/app.min.js',
     csssrc: 'dev/view/templates/includes/header.php',
     cssdest: 'dev/view/templates/includes/',
     cssinjectsrc: 'build/css/app.min.css'
@@ -36,24 +38,32 @@ gulp.task('scripts', () =>
         .pipe(concat(jsprop.name))
         .pipe(uglify().on('error', (e) => {
             console.log(e);
-        })) 
+        }))
+        .pipe(rename(jsprop.rename))
         .pipe(gulp.dest(jsprop.dest))
 );
 
+gulp.task('styles', () =>
+    gulp.src(cssprop.src)
+        .pipe(concat(cssprop.rename))
+        .pipe(postcss([cssnano]))
+        .pipe(gulp.dest(cssprop.dest))
+);
+
 gulp.task('default', () =>
-        runSequence('concat')
-    );
+    runSequence('scripts')
+);
     
 gulp.task('inject:styles', () => 
     gulp.src(injectprop.csssrc)
-        .pipe(inject(gulp.src(bowerfiles(), {read: false}), {name: 'bower'}))
+        .pipe(inject(gulp.src(bowerfiles(), { read: false }), { name: 'bower' }))
         .pipe(inject(gulp.src(injectprop.cssinjectsrc)))
         .pipe(gulp.dest(injectprop.cssdest))
-    );
+);
     
 gulp.task('inject:scripts', () =>
     gulp.src(injectprop.jssrc)
         .pipe(inject(gulp.src(bowerfiles(),{ read: false }), { name: 'bower'}))
         .pipe(inject(gulp.src(injectprop.jsinjectsrc)))
         .pipe(gulp.dest(injectprop.jsdest))
-    );
+);
