@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <!-- endinject -->
         <!-- inject:css -->
+        <link rel="stylesheet" href="/build/css/app.min.css">
         <!-- endinject -->
     </head>
     <body>

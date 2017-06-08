@@ -10,13 +10,13 @@ import babel from 'gulp-babel';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 
-const cssprop = {
+const stylesprop = {
     src: 'css/**/*.css',
     dest: 'build/css',
-    rename: 'styles.min.css'    
+    rename: 'app.min.css'    
 }
 
-const jsprop =  {
+const scriptsprop =  {
     src: 'js/**/*.js',
     dest: 'build/js/',
     name: 'app.js',
@@ -33,25 +33,25 @@ const injectprop = {
 }
 
 gulp.task('scripts', () =>
-    gulp.src(jsprop.src)
+    gulp.src(scriptsprop.src)
         .pipe(babel())
-        .pipe(concat(jsprop.name))
+        .pipe(concat(scriptsprop.name))
         .pipe(uglify().on('error', (e) => {
             console.log(e);
         }))
-        .pipe(rename(jsprop.rename))
-        .pipe(gulp.dest(jsprop.dest))
+        .pipe(rename(scriptsprop.rename))
+        .pipe(gulp.dest(scriptsprop.dest))
 );
 
 gulp.task('styles', () =>
-    gulp.src(cssprop.src)
-        .pipe(concat(cssprop.rename))
-        .pipe(postcss([cssnano]))
-        .pipe(gulp.dest(cssprop.dest))
+    gulp.src(stylesprop.src)
+        .pipe(concat(stylesprop.rename))
+        .pipe(cssnano())
+        .pipe(gulp.dest(stylesprop.dest))
 );
 
 gulp.task('default', () =>
-    runSequence('scripts')
+    runSequence(['scripts', 'styles'], ['inject:scripts', 'inject:styles'])
 );
     
 gulp.task('inject:styles', () => 
@@ -63,7 +63,7 @@ gulp.task('inject:styles', () =>
     
 gulp.task('inject:scripts', () =>
     gulp.src(injectprop.jssrc)
-        .pipe(inject(gulp.src(bowerfiles(),{ read: false }), { name: 'bower'}))
+        .pipe(inject(gulp.src(bowerfiles(), { read: false }), { name: 'bower'}))
         .pipe(inject(gulp.src(injectprop.jsinjectsrc)))
         .pipe(gulp.dest(injectprop.jsdest))
 );
